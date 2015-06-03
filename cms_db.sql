@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `cms_category` (
 CREATE TABLE IF NOT EXISTS `cms_href` (
   `id` int(10) unsigned NOT NULL COMMENT '导航栏目自定义链接ID',
   `href` varchar(255) NOT NULL COMMENT '自定义链接内容'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航自定义链接表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航自定义链接表';
 
 -- --------------------------------------------------------
 

@@ -1,0 +1,82 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header">
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead">栏目管理</h2>
+            <a class="pure-button" href="{:U('Index/addCategory')}">新增</a>
+
+            <h2></h2>
+            <table class="pure-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>栏目名称</th>
+                        <th>栏目类型</th>
+                        <th>父级栏目</th>
+                        <th>导航显示</th>
+                        <th>排序</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <volist name="listCat" id="vo" >
+                        <eq name="vo.id|get_category_level" value="1">
+                            <tr class="pure-table-odd">
+                                <td>{$vo.id}</td>
+                                <td>{$vo.catname}</td>
+                                <td>
+                                    <switch name="vo.type" >
+                                    <case value="1" break="1">文章</case>
+                                    <case value="2" break="1">产品</case>
+                                    <case value="3" break="1">单页</case>
+                                    <default />自定义
+                                    </switch>
+                                </td>
+                                <td>{$vo.pid}</td>
+                                <td>
+                                    <eq name="vo.isnav" value="1">
+                                        是
+                                    <else/>
+                                        否
+                                    </eq>
+                                </td>
+                                <td>{$vo.sort}</td>
+                            </tr>
+                        </eq>
+                        <volist name="listCat" id="vo2" >
+                            <eq name="vo2.pid|get_category_level" value="2">
+                                <tr class="pure-table-odd">
+                                    <td>{$vo2.id}</td>
+                                    <td>--{$vo2.catname}{$vo2.id|get_category_level}</td>
+                                    <td>
+                                        <switch name="vo.type" >
+                                        <case value="1" break="1">文章</case>
+                                        <case value="2" break="1">产品</case>
+                                        <case value="3" break="1">单页</case>
+                                        <default />自定义
+                                        </switch>
+                                    </td>
+                                    <td>{$vo2.pid}</td>
+                                    <td>
+                                        <eq name="vo.isnav" value="1">
+                                            是
+                                        <else/>
+                                            否
+                                        </eq>
+                                    </td>
+                                    <td>{$vo2.sort}</td>
+                                </tr>
+                            </eq>      
+                        </volist>
+                    </volist>
+
+                </tbody>
+            </table>            
+        </div>
+    </div>
+
+<include file="Admin/footer" />

@@ -1,0 +1,46 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header">
+            <h1>Page Title</h1>
+            <h2>A subtitle for your page goes here</h2>
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead"></h2>
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('Index/categoryAdd')}">
+                <fieldset>
+                    <legend>新增栏目</legend>
+
+                    <label for="catname">栏目名称</label>
+                    <input name="catname" type="text" placeholder="栏目名称">
+
+                    <label for="type">栏目类型</label>
+                    <select name="type">
+                        <option value="0">自定义</option>
+                        <option value="1">文章</option>
+                        <option value="2">产品/案例</option>
+                        <option value="3">单页</option>
+                    </select>
+
+                    <label for="pid">父级栏目</label>
+                    <select name="pid" id="pid">
+                        <option value="0">作为顶级栏目</option>
+                        <foreach name="listCategory" item="vo" >
+                            <option value="{$vo.id}">{$vo.catname}</option>
+                        </foreach>
+                    </select>
+
+                    <label for="isnav" class="pure-checkbox">
+                        <input type="radio" name="isnav" value="0" checked> 否
+                        <input name="isnav" type="radio" value="1"> 是
+                    </label>
+
+                    <button type="submit" class="pure-button pure-button-primary">提交</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<include file="Admin/footer" />
