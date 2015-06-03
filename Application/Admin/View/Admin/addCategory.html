@@ -20,21 +20,36 @@
                     <select name="type">
                         <option value="0">自定义</option>
                         <option value="1">文章</option>
-                        <option value="2">产品/案例</option>
+                        <option value="2">图片</option>
                         <option value="3">单页</option>
                     </select>
 
                     <label for="pid">父级栏目</label>
                     <select name="pid" id="pid">
-                        <option value="0">作为顶级栏目</option>
-                        <foreach name="listCategory" item="vo" >
+                        <option value="0">作为一级栏目</option>
+                            
+                        <!-- 一级栏目 -->
+                        <php>$listCat1 = get_sub_category(0);</php>
+                        <volist name="listCat1" id="vo" >
                             <option value="{$vo.id}">{$vo.catname}</option>
-                        </foreach>
+                            <!-- 二级栏目 -->
+                            <php>$listCat2 = get_sub_category($vo['id']);</php>
+                            <volist name="listCat2" id="vo2" >
+                                <option value="{$vo2.id}">|=={$vo2.catname}</option> 
+                                <!-- 一级栏目 -->
+                                <php>$listCat3 = get_sub_category($vo2['id']);</php>
+                                <volist name="listCat3" id="vo3" >
+                                    <option value="{$vo3.id}">|==|=={$vo3.catname}</option>                        
+                                </volist>                       
+                            </volist>
+                        </volist>
                     </select>
 
-                    <label for="isnav" class="pure-checkbox">
-                        <input type="radio" name="isnav" value="0" checked> 否
-                        <input name="isnav" type="radio" value="1"> 是
+                    <label for="isnav1" class="pure-radio">
+                        <input name="isnav" id="isnav1" type="radio" value="0" checked> 否
+                    </label>
+                    <label for="isnav2" class="pure-radio">
+                        <input name="isnav" id="isnav2" type="radio" value="1"> 是
                     </label>
 
                     <button type="submit" class="pure-button pure-button-primary">提交</button>

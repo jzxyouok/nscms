@@ -9,4 +9,6 @@ return array(
 	'DB_PORT'               =>  '3306',        // 端口
 	'DB_PREFIX'             =>  'cms_',    // 数据库表前缀
 	'DB_CHARSET'            =>  'utf8',      // 数据库编码默认采用utf8
+
+	'DEFAULT_MODULE' => 'Admin',
 );

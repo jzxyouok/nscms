@@ -4,35 +4,31 @@ use Think\Controller;
 class IndexController extends Controller {
 
 	public function _initialize(){
+        //定义后台模板目录
 		define('TPL_PATH',__ROOT__.'/'.MODULE_PATH.'View/'.MODULE_NAME);
 	}
 
     public function index(){
-        //$this->show('hw','utf-8');
         $this->display('Admin/index');
     }
 
+    //栏目列表
     public function listCategory(){
-    	$listCategory = M('category')->select();
-    	// $listCat = [];
-    	// foreach ($listCategory as $value) {
-    	// 	$level = get_category_level($value['id']);
-    	// 	$listCat[$level][] = $value;
-    	// }
-    	// $this->listCat = $listCat;
-    	$this->listCat = $listCategory;
     	$this->display('Admin/listCategory');
     }
 
+    //添加栏目（表单）
     public function addCategory(){
-    	$this->listCategory = M('category')->select();
     	$this->display('Admin/addCategory');
     }
 
+    //添加栏目（post处理，插入数据库）
     public function categoryAdd(){
-    	if(I('post.pid')>2){
-    		$this->error('不能再添加子栏目了');
+        //判断父级栏目所属层级，栏目最多三层
+    	if(get_category_level(I('post.pid'))>2){
+    		$this->error('栏目最多只能到三层');
     	}
+        //插入数据库
 		$categoryModel = M('category');
 		if($categoryModel->create()){
 		    $result = $categoryModel->add(); // 写入数据到数据库 
@@ -43,6 +39,6 @@ class IndexController extends Controller {
     }
 
     public function test(){
-    	echo get_category_level(2);
+    	dump(get_sub_category(0));
     }
 }
