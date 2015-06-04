@@ -49,7 +49,7 @@ function get_category_type($type = 0){
  * @return array 子栏目数组
  */
 function get_sub_category($pid = 0){
-	return M('category')->where('pid='.$pid)->select();
+	return M('category')->where('pid='.$pid)->order('sort')->select();
 }
 
 /**
@@ -74,4 +74,18 @@ function get_catname($pid = 0){
 		return '';
 	else
 		return M('category')->where('id='.$pid)->getField('catname');
+}
+
+/**
+ * 判断是否有子栏目
+ * @param  int  $catid 栏目ID
+ * @return boolean     true有，false否
+ */
+function has_sub_category($catid){
+	$pids = M('category')->group('pid')->field('pid')->select();
+	foreach ($pids as $value) {
+		if($value['pid'] == $catid)
+			return true;
+	}
+	return false;
 }

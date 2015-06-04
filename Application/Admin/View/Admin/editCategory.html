@@ -3,38 +3,36 @@
 
     <div id="main">
         <div class="header">
-            <h1>Page Title</h1>
-            <h2>A subtitle for your page goes here</h2>
         </div>
 
         <div class="content">
             <h2 class="content-subhead"></h2>
-            <form class="pure-form pure-form-stacked" method="post" action="{:U('Index/categoryAdd')}">
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('Index/categoryEdit')}">
                 <fieldset>
-                    <legend>新增栏目</legend>
+                    <legend>编辑栏目</legend>
 
                     <label for="catname">栏目名称</label>
-                    <input name="catname" type="text" placeholder="栏目名称">
+                    <input name="catname" type="text" placeholder="栏目名称" value="{$categoryItem.catname}">
 
                     <label for="type">栏目类型</label>
                     <select name="type">
                         <for start="0" end="4">
-                            <option value="{$i}">{$i|get_category_type}</option>
+                            <option value="{$i}" <eq name="categoryItem.type" value="$i">selected</eq>>{$i|get_category_type}</option>
                         </for>
                     </select>
 
                     <label for="pid">父级栏目</label>
                     <select name="pid" id="pid">
-                        <option value="0">作为一级栏目</option>
+                        <option value="0" <eq name="categoryItem.pid" value="0">selected</eq>>作为一级栏目</option>
                             
                         <!-- 一级栏目 -->
                         <php>$listCat1 = get_sub_category(0);</php>
                         <volist name="listCat1" id="vo" >
-                            <option value="{$vo.id}">{$vo.catname}</option>
+                            <option value="{$vo.id}" <eq name="categoryItem.pid" value="$vo['id']">selected</eq>>{$vo.catname}</option>
                             <!-- 二级栏目 -->
                             <php>$listCat2 = get_sub_category($vo['id']);</php>
                             <volist name="listCat2" id="vo2" >
-                                <option value="{$vo2.id}">||`=={$vo2.catname}</option> 
+                                <option value="{$vo2.id}" <eq name="categoryItem.pid" value="$vo2['id']">selected</eq>>||`=={$vo2.catname}</option> 
                                 <!-- 一级栏目 -->
                                 <php>$listCat3 = get_sub_category($vo2['id']);</php>
                                 <volist name="listCat3" id="vo3" >
@@ -45,12 +43,13 @@
                     </select>
 
                     <label for="isnav1" class="pure-radio">
-                        <input name="isnav" id="isnav1" type="radio" value="0" checked> 否
+                        <input name="isnav" id="isnav1" type="radio" value="0" <eq name="categoryItem.isnav" value="0">checked</eq>> 否
                     </label>
                     <label for="isnav2" class="pure-radio">
-                        <input name="isnav" id="isnav2" type="radio" value="1"> 是
+                        <input name="isnav" id="isnav2" type="radio" value="1" <eq name="categoryItem.isnav" value="1">checked</eq>> 是
                     </label>
 
+                    <input name="id" type="hidden" value="{$categoryItem.id}">
                     <button type="submit" class="pure-button pure-button-primary">提交</button>
                 </fieldset>
             </form>

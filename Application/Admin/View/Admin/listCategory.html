@@ -8,6 +8,7 @@
         <div class="content">
             <h2 class="content-subhead">栏目管理</h2>
             <a class="pure-button" href="{:U('Index/addCategory')}">新增</a>
+            <a id="editButton" class="pure-button" href="{:U('Index/editCategory','','')}">编辑</a>
             <a id="deleteButton" class="pure-button" href="{:U('Index/deleteCategory')}">删除</a>
             <button id="test" class="pure-button">测试</button>
             <h2></h2>
@@ -18,9 +19,9 @@
                         <th><input id="checkAllIds" type="checkbox"></th>
                         <th>栏目名称</th>
                         <th>栏目类型</th>
-                        <th>父级栏目</th>
+                        <!-- <th>父级栏目</th> -->
                         <th>导航显示</th>
-                        <th>排序</th>
+                        <th><a id="sortButton" class="pure-button pure-button-primary" href="{:U('Index/sortCategory')}">排序</a></th>
                     </tr>
                 </thead>
 
@@ -29,10 +30,10 @@
                     <php>$listCat1 = get_sub_category(0);</php>
                     <volist name="listCat1" id="vo" >
                         <tr class="pure-table-odd">
-                            <td><input class="catid" type="checkbox" value="{$vo.id}"></td>
+                            <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
                             <td>{$vo.catname}</td>
                             <td>{$vo.type|get_category_type}</td>
-                            <td>{$vo.pid|get_catname}</td>
+                            <!-- <td>{$vo.pid|get_catname}</td> -->
                             <td> {$vo.isnav|get_yes_no} </td>
                             <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
                         </tr>
@@ -40,23 +41,23 @@
                         <php>$listCat2 = get_sub_category($vo['id']);</php>
                         <volist name="listCat2" id="vo2" >
                             <tr>
-                                <td><input class="catid" type="checkbox" value="{$vo2.id}"></td>
-                                <td>|=={$vo2.catname}</td>
+                                <td><input class="ids" type="checkbox" value="{$vo2.id}"></td>
+                                <td>||`=={$vo2.catname}</td>
                                 <td>{$vo2.type|get_category_type}</td>
-                                <td>{$vo2.pid|get_catname}</td>
+                                <!-- <td>{$vo2.pid|get_catname}</td> -->
                                 <td> {$vo2.isnav|get_yes_no} </td>
-                                <td>{$vo2.sort}</td>
+                                <td><input class="cms-input-order" type="text" value="{$vo2.sort}"></td>
                             </tr>
                             <!-- 三级栏目 -->
                             <php>$listCat3 = get_sub_category($vo2['id']);</php>
                             <volist name="listCat3" id="vo3" >
-                                <tr class="pure-table-odd">
-                                    <td><input class="catid" type="checkbox" value="{$vo3.id}"></td>
-                                    <td>|==|=={$vo3.catname}</td>
+                                <tr>
+                                    <td><input class="ids" type="checkbox" value="{$vo3.id}"></td>
+                                    <td>||`==||`=={$vo3.catname}</td>
                                     <td>{$vo3.type|get_category_type}</td>
-                                    <td>{$vo3.pid|get_catname}</td>
+                                    <!-- <td>{$vo3.pid|get_catname}</td> -->
                                     <td> {$vo3.isnav|get_yes_no} </td>
-                                    <td>{$vo3.sort}</td>
+                                    <td><input class="cms-input-order" type="text" value="{$vo3.sort}"></td>
                                 </tr>                        
                             </volist>
                         </volist>
