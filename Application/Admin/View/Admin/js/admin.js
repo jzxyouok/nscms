@@ -13,10 +13,10 @@ $(document).ready(function(){
 		var ids = [];
 		ids = get_checked_ids();
 		if(ids==''){
-			alert('啥都没选呢，删个JB！');
+			alert(Lang.NOT_CHECKED_ERROR);
 			return false;
 		}else{
-			if(!confirm("你确定要删除这"+ids.length+"条数据吗？"))
+			if(!confirm(Lang.CONFIRM_DELETE))
 				return false;
 		}
 		$.post($(this).attr("href"),{"ids":ids},function(backData){
@@ -31,10 +31,10 @@ $(document).ready(function(){
 		var ids = [];
 		ids = get_checked_ids();
 		if (ids.length == 0){
-			alert("你妹，啥都没选呢，编辑个毛！");
+			alert(Lang.NOT_CHECKED_ERROR);
 			return false;
 		}else if(ids.length > 1){
-			alert("选多了！只能选一个！");
+			alert(Lang.TOO_MANY_ERROR);
 			return false;
 		}
 		window.location.href=$(this).attr("href")+"/id/"+ids[0];
@@ -62,23 +62,32 @@ $(document).ready(function(){
 		$(".ids").each(function(i){
 			ids[i] = $(this).val();
 		});
-		// alert(ids+"\n"+sorts);
 		$.post($(this).attr("href"),{"sorts":sorts,"ids":ids},function(backData){
 			alert(backData.info);
 			window.location.href=backData.url;
-			// alert(backData);
 		})
 		return false;
 	});
 
+	function U(action){
+		var url = 'aa';
+		$.post($("#jsGetUrl").attr("href"), {"action":action}, function(backData){
+			url = backData;
+			return url;
+		});
+		return url;
+	}
+	
+	//操作提示语
+	var Lang = {
+		"NOT_CHECKED_ERROR":"啥都没选呢！点我搞毛！",
+		"CONFIRM_DELETE":"确定删除？",
+		"TOO_MANY_ERROR":"选多了！只能选一个！"
+	};
+
 	//测试按钮
 	$("#test").click(function(){
-		var arr = [];
-		$(".ids:checked").each(function(i){
-			arr[i] = $(this).val();
-			// alert(i);
-		});
-		alert(arr);
+		alert(lang.test);
+		return false;
 	});
-	
 });

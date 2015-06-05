@@ -7,7 +7,7 @@
 
         <div class="content">
             <h2 class="content-subhead"></h2>
-            <form class="pure-form pure-form-stacked" method="post" action="{:U('Index/categoryEdit')}">
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('categoryEdit')}">
                 <fieldset>
                     <legend>编辑栏目</legend>
 
@@ -17,7 +17,7 @@
                     <label for="type">栏目类型</label>
                     <select name="type">
                         <for start="0" end="4">
-                            <option value="{$i}" <eq name="categoryItem.type" value="$i">selected</eq>>{$i|get_category_type}</option>
+                            <option value="{$i}" <eq name="categoryItem.type" value="$i">selected</eq>>{$i|get_category_type_name}</option>
                         </for>
                     </select>
 
@@ -32,11 +32,11 @@
                             <!-- 二级栏目 -->
                             <php>$listCat2 = get_sub_category($vo['id']);</php>
                             <volist name="listCat2" id="vo2" >
-                                <option value="{$vo2.id}" <eq name="categoryItem.pid" value="$vo2['id']">selected</eq>>||`=={$vo2.catname}</option> 
+                                <option value="{$vo2.id}" <eq name="categoryItem.pid" value="$vo2['id']">selected</eq>>|>-{$vo2.catname}</option> 
                                 <!-- 一级栏目 -->
                                 <php>$listCat3 = get_sub_category($vo2['id']);</php>
                                 <volist name="listCat3" id="vo3" >
-                                    <option value="{$vo3.id}">||`==||`=={$vo3.catname}</option>                        
+                                    <option value="{$vo3.id}">|>-|>-{$vo3.catname}</option>                        
                                 </volist>                       
                             </volist>
                         </volist>

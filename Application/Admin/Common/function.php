@@ -19,26 +19,35 @@ function get_category_level($catid){
 }
 
 /**
- * 获取栏目类型
+ * 获取栏目类型编号
+ * @param  int $catid 栏目ID
+ * @return int        类型编号
+ */
+function get_category_type_no($catid){
+	return M('category')->where('id='.$catid)->getField('type');
+}
+
+/**
+ * 获取栏目类型名称
  * @param int $type 类型编号
  * @return string 栏目类型
  */
-function get_category_type($type = 0){
+function get_category_type_name($type = 0){
 	switch ($type) {
 		case 1:
-			return '文章';
+			return L('ARTICLE_TYPE');
 			break;
 		
 		case 2:
-			return '图片';
+			return L('IMAGE_TYPE');
 			break;
 		
 		case 3:
-			return '单页';
+			return L('PAGE_TYPE');
 			break;
 		
 		default:
-			return '自定义';
+			return L('CUSTOM_TYPE');
 			break;
 	}
 }
@@ -49,7 +58,7 @@ function get_category_type($type = 0){
  * @return array 子栏目数组
  */
 function get_sub_category($pid = 0){
-	return M('category')->where('pid='.$pid)->order('sort')->select();
+	return M('category')->where('pid='.$pid)->order('sort desc')->select();
 }
 
 /**
@@ -59,9 +68,9 @@ function get_sub_category($pid = 0){
  */
 function get_yes_no($binary){
 	if($binary == 1)
-		return '是';
+		return L('YES');
 	else
-		return '否';
+		return L('NO');
 }
 
 /**

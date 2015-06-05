@@ -7,10 +7,10 @@
 
         <div class="content">
             <h2 class="content-subhead">栏目管理</h2>
-            <a class="pure-button" href="{:U('Index/addCategory')}">新增</a>
-            <a id="editButton" class="pure-button" href="{:U('Index/editCategory','','')}">编辑</a>
-            <a id="deleteButton" class="pure-button" href="{:U('Index/deleteCategory')}">删除</a>
-            <button id="test" class="pure-button">测试</button>
+            <a class="pure-button" href="{:U('addCategory')}">新增</a>
+            <a id="editButton" class="pure-button" href="{:U('editCategory','','')}">编辑</a>
+            <a id="deleteButton" class="pure-button" href="{:U('deleteCategory')}">删除</a>
+            <a id="test" class="pure-button" href="{:U('test')}">测试</a>
             <h2></h2>
 
             <table class="pure-table">
@@ -21,7 +21,7 @@
                         <th>栏目类型</th>
                         <!-- <th>父级栏目</th> -->
                         <th>导航显示</th>
-                        <th><a id="sortButton" class="pure-button pure-button-primary" href="{:U('Index/sortCategory')}">排序</a></th>
+                        <th><a id="sortButton" class="pure-button pure-button-primary" href="{:U('sortCategory')}">排序</a></th>
                     </tr>
                 </thead>
 
@@ -31,8 +31,18 @@
                     <volist name="listCat1" id="vo" >
                         <tr class="pure-table-odd">
                             <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
-                            <td>{$vo.catname}</td>
-                            <td>{$vo.type|get_category_type}</td>
+                            <td>
+                                <switch name="vo.id|get_category_type_no">
+                                    <case value="0">
+                                        <a href="{:U('editCustomLink',array('linkid'=>$vo['id']))}">{$vo.catname}</a>
+                                    </case>
+                                    <case value="3">
+                                        <a href="{:U('editPage',array('pageid'=>$vo['id']))}">{$vo.catname}</a>
+                                    </case>
+                                    <default />{$vo.catname}
+                                </switch>
+                            </td>
+                            <td>{$vo.type|get_category_type_name}</td>
                             <!-- <td>{$vo.pid|get_catname}</td> -->
                             <td> {$vo.isnav|get_yes_no} </td>
                             <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
@@ -42,8 +52,8 @@
                         <volist name="listCat2" id="vo2" >
                             <tr>
                                 <td><input class="ids" type="checkbox" value="{$vo2.id}"></td>
-                                <td>||`=={$vo2.catname}</td>
-                                <td>{$vo2.type|get_category_type}</td>
+                                <td>|>-{$vo2.catname}</td>
+                                <td>{$vo2.type|get_category_type_name}</td>
                                 <!-- <td>{$vo2.pid|get_catname}</td> -->
                                 <td> {$vo2.isnav|get_yes_no} </td>
                                 <td><input class="cms-input-order" type="text" value="{$vo2.sort}"></td>
@@ -53,8 +63,8 @@
                             <volist name="listCat3" id="vo3" >
                                 <tr>
                                     <td><input class="ids" type="checkbox" value="{$vo3.id}"></td>
-                                    <td>||`==||`=={$vo3.catname}</td>
-                                    <td>{$vo3.type|get_category_type}</td>
+                                    <td>|>-|>-{$vo3.catname}</td>
+                                    <td>{$vo3.type|get_category_type_name}</td>
                                     <!-- <td>{$vo3.pid|get_catname}</td> -->
                                     <td> {$vo3.isnav|get_yes_no} </td>
                                     <td><input class="cms-input-order" type="text" value="{$vo3.sort}"></td>

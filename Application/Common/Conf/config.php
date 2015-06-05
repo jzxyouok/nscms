@@ -10,5 +10,6 @@ return array(
 	'DB_PREFIX'             =>  'cms_',    // 数据库表前缀
 	'DB_CHARSET'            =>  'utf8',      // 数据库编码默认采用utf8
 
-	'DEFAULT_MODULE' => 'Admin',
+	'DEFAULT_MODULE' => 'Admin', //默认模块
+	'LANG_SWITCH_ON' => true,   // 开启语言包功能
 );
