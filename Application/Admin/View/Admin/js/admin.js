@@ -68,15 +68,6 @@ $(document).ready(function(){
 		})
 		return false;
 	});
-
-	function U(action){
-		var url = 'aa';
-		$.post($("#jsGetUrl").attr("href"), {"action":action}, function(backData){
-			url = backData;
-			return url;
-		});
-		return url;
-	}
 	
 	//操作提示语
 	var Lang = {

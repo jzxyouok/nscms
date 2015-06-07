@@ -1,0 +1,25 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header"> </div>
+
+        <div class="content">
+            <h2 class="content-subhead"></h2>
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('bannerAdd')}" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>新增banner</legend>
+
+                    <label for="bannerImg">上传图片</label>
+                    <input name="bannerImg" type="file">
+
+                    <label for="href">链接</label>
+                    <input name="href" type="text" placeholder="链接">
+
+                    <button type="submit" class="pure-button pure-button-primary">提交</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<include file="Admin/footer" />

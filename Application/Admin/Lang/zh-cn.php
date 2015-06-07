@@ -13,4 +13,6 @@ return array(
 
      'YES' => '是',
      'NO' => '否',
+
+     'NO_UPLOAD_FILE' => '搞毛！文件都没选就点提交？',
 );

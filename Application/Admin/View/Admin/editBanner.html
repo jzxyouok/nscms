@@ -1,0 +1,29 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header"> </div>
+
+        <div class="content">
+            <h2 class="content-subhead"></h2>
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('bannerEdit')}" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>编辑banner</legend>
+
+                    <label for="bannerImgThumb">图片预览</label>
+                    <img src="__ROOT__/{:C('bannerUpload.rootPath')}{$bannerItem.imgpath}" alt="">
+
+                    <label for="bannerImg">重新上传</label>
+                    <input name="bannerImg" type="file">
+
+                    <label for="href">链接</label>
+                    <input name="href" type="text" placeholder="链接" value="{$bannerItem.href}">
+
+                    <input name="id" type="hidden" value="{$bannerItem.id}">
+                    <button type="submit" class="pure-button pure-button-primary">提交</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<include file="Admin/footer" />
