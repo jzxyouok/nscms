@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.4
+-- version 4.4.6.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-06-02 21:49:00
+-- Generation Time: 2015-06-08 13:02:06
 -- 服务器版本： 5.5.43-0+deb8u1
 -- PHP Version: 5.6.7-1
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `cms_auth_rule` (
 CREATE TABLE IF NOT EXISTS `cms_banner` (
   `id` int(10) unsigned NOT NULL,
   `imgpath` varchar(255) NOT NULL COMMENT 'banner图路径',
-  `href` varchar(255) NOT NULL COMMENT 'banner图链接',
+  `href` varchar(255) DEFAULT NULL COMMENT 'banner图链接',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='首页banner图表';
 
@@ -120,12 +120,12 @@ CREATE TABLE IF NOT EXISTS `cms_category` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_href`
+-- 表的结构 `cms_custom_link`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_href` (
-  `id` int(10) unsigned NOT NULL COMMENT '导航栏目自定义链接ID',
-  `href` varchar(255) NOT NULL COMMENT '自定义链接内容'
+CREATE TABLE IF NOT EXISTS `cms_custom_link` (
+  `linkid` int(10) unsigned NOT NULL COMMENT '导航栏目自定义链接ID',
+  `href` varchar(255) DEFAULT NULL COMMENT '自定义链接内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航自定义链接表';
 
 -- --------------------------------------------------------
@@ -135,9 +135,39 @@ CREATE TABLE IF NOT EXISTS `cms_href` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_page` (
-  `id` int(10) unsigned NOT NULL COMMENT '导航栏目单页ID',
-  `content` text NOT NULL COMMENT '单页内容'
+  `pageid` int(10) unsigned NOT NULL COMMENT '导航栏目单页ID',
+  `content` text COMMENT '单页内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='单页内容表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cms_piece`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_piece` (
+  `id` int(10) unsigned NOT NULL,
+  `title` varchar(255) NOT NULL COMMENT '标题',
+  `content` text NOT NULL COMMENT '内容'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='碎片调用表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cms_uploads`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_uploads` (
+  `id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL COMMENT '上传文件的原始名称',
+  `type` varchar(255) NOT NULL COMMENT '上传文件的MIME类型',
+  `size` int(10) unsigned NOT NULL COMMENT '上传文件的大小',
+  `ext` varchar(255) NOT NULL COMMENT '上传文件的后缀类型',
+  `md5` varchar(32) DEFAULT NULL COMMENT '上传文件的md5哈希验证字符串 仅当hash设置开启后有效',
+  `sha1` varchar(40) DEFAULT NULL COMMENT '上传文件的sha1哈希验证字符串 仅当hash设置开启后有效',
+  `savename` varchar(255) NOT NULL COMMENT '上传文件的保存名称',
+  `savepath` varchar(255) NOT NULL COMMENT '上传文件的保存路径'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传附件表';
 
 --
 -- Indexes for dumped tables
@@ -189,6 +219,30 @@ ALTER TABLE `cms_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cms_custom_link`
+--
+ALTER TABLE `cms_custom_link`
+  ADD PRIMARY KEY (`linkid`);
+
+--
+-- Indexes for table `cms_page`
+--
+ALTER TABLE `cms_page`
+  ADD PRIMARY KEY (`pageid`);
+
+--
+-- Indexes for table `cms_piece`
+--
+ALTER TABLE `cms_piece`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cms_uploads`
+--
+ALTER TABLE `cms_uploads`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -221,6 +275,16 @@ ALTER TABLE `cms_banner`
 -- AUTO_INCREMENT for table `cms_category`
 --
 ALTER TABLE `cms_category`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `cms_piece`
+--
+ALTER TABLE `cms_piece`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `cms_uploads`
+--
+ALTER TABLE `cms_uploads`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
