@@ -1,2 +1,4 @@
 Application/Runtime
-Uploads/
+Uploads/*
+!Uploads/index.html
+!Uploads/README.md
