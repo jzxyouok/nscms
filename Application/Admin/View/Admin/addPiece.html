@@ -1,0 +1,41 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header"> </div>
+
+        <div class="content">
+            <h2 class="content-subhead"></h2>
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('pieceAdd')}" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>新增碎片</legend>
+
+                    <label for="title">标题</label>
+                    <input name="title" type="text">
+
+                    <label for="content">内容</label>
+
+                    <textarea name="content" id="kindeditor" cols="30" rows="10"></textarea>
+                    <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                    <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                    <script>
+                            KindEditor.ready(function(K) {
+                                    window.editor = K.create('#kindeditor', {
+                                        uploadJson : "{:U('Piece/kindeditorImageUpload')}",
+                                        allowFileManager : false,
+                                        resizeType : 1,
+                                        items : [
+                                            'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                                            'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                                            'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+                                    });
+                            });
+                    </script>
+
+                    <button type="submit" class="pure-button pure-button-primary">提交</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<include file="Admin/footer" />
