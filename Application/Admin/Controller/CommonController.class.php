@@ -19,13 +19,37 @@ class CommonController extends Controller {
     
     // kindeditor上传图片处理
     public function kindeditorImageUpload(){
-    $upload = new \Think\Upload(C('kindeditorImageUpload'));// 实例化上传类
+        $upload = new \Think\Upload(C('UPLOAD_CONFIG.editor'));// 实例化上传类
         $info = $upload->upload();
         if(!$info) {// 上传错误提示错误信息
             echo json_encode(array('error' => 1, 'message' => $upload->getError()));
         }else{// 上传成功
             $insertUploadId = M('uploads')->add($info['imgFile']);// 将上传成功的文件信息写入uploads表
-            echo json_encode(array('error' => 0, 'url' => __ROOT__.'/'.C('kindeditorImageUpload.rootPath').$info['imgFile']['savepath'].$info['imgFile']['savename']));
+            echo json_encode(array('error' => 0, 'url' => get_uploadfile_path($insertUploadId)));
         }
+    }
+
+    // jquery.fileupload上传处理
+    public function jqueryFileUpload(){
+        $upload = new \Think\Upload(C('UPLOAD_CONFIG.'.I('post.inputName')));// 实例化上传类
+        $info = $upload->upload();
+        if(!$info) {// 上传错误提示错误信息
+            $this->error($upload->getError());
+        }else{// 上传成功
+            $insertUploadId = M('uploads')->add($info[I('post.inputName')]);// 将上传成功的文件信息写入uploads表
+            if($insertUploadId){
+                $ajaxReturn['status'] = 1;
+                $ajaxReturn['info'] = L('_OPERATION_SUCCESS_');
+                $ajaxReturn['uploadfileid'] = $insertUploadId;
+                $this->ajaxReturn($ajaxReturn);
+            }
+        }
+    }
+
+
+    public function test(){
+        echo get_uploadfile_path(37);
+        //$this->display('Admin/test');
+        //echo array_multiToSingle(array('aa' => array('bb' => 'cc')));
     }
 }

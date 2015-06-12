@@ -98,3 +98,13 @@ function has_sub_category($catid){
 	}
 	return false;
 }
+
+/**
+ * 获取附件路径
+ * @param  int $id 附件ID
+ * @return string  附件路径
+ */
+function get_uploadfile_path($id){
+	$item = M('uploads')->find($id);
+	return __ROOT__.'/Uploads/'.$item['savepath'].$item['savename'];
+}

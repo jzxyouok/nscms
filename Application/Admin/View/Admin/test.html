@@ -1,0 +1,59 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header"></div>
+
+        <div class="content">
+            <h2 class="content-subhead"></h2>
+            <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+            <link rel="stylesheet" href="__PUBLIC__/jquery_fileupload/css/jquery.fileupload.css">
+
+            <span class="btn btn-success fileinput-button">
+		        <i class="glyphicon glyphicon-plus"></i>
+		        <span>选择图片</span>
+		        <!-- The file input field used as target for the file upload widget -->
+		        <input id="fileupload" type="file" name="thumb" multiple>
+		    </span>
+
+		    <!-- The global progress bar -->
+		    <div id="progress" class="progress">
+		        <div class="progress-bar progress-bar-success"></div>
+		    </div>
+
+            <script src="__PUBLIC__/jquery_fileupload/vendor/jquery.ui.widget.js"></script>
+			<script src="__PUBLIC__/jquery_fileupload/jquery.iframe-transport.js"></script>
+			<script src="__PUBLIC__/jquery_fileupload/jquery.fileupload.js"></script>
+			<script>
+			/*jslint unparam: true */
+			/*global window, $ */
+			$(function () {
+			    'use strict';
+			    // Change this to the location of your server-side upload handler:
+			    var url = "{:U('jqueryFileUpload')}";
+			    var inputName = $("#fileupload").prop("name");
+			    $('#fileupload').fileupload({
+			        url: url,
+			        formData: {"inputName":inputName},
+			        dataType: 'json',
+			        done: function (e, data) {
+			            // $.each(data.result.files, function (index, file) {
+			            //     $('<p/>').text(file.name).appendTo('#files');
+			            // });
+			            // alert(data.result.info);
+			        },
+			        progressall: function (e, data) {
+			            var progress = parseInt(data.loaded / data.total * 100, 10);
+			            $('#progress .progress-bar').css(
+			                'width',
+			                progress + '%'
+			            );
+			        }
+			    }).prop('disabled', !$.support.fileInput)
+			        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+			});
+			</script>
+        </div>
+    </div>
+
+<include file="Admin/footer" />

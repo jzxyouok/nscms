@@ -27,7 +27,7 @@
                     <volist name="bannerList" id="vo">
                         <tr>
                             <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
-                            <td><img class="admin-banner-list" src="__ROOT__/{:C('bannerUpload.rootPath')}{$vo.imgpath}" alt=""></td>
+                            <td><img class="admin-banner-list" src="{$vo.uploadfileid|get_uploadfile_path}" alt=""></td>
                             <td><input type="text" value="{$vo.href}" readonly></td>
                             <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
                         </tr>

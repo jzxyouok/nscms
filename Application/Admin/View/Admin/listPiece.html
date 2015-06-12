@@ -11,7 +11,6 @@
             <a id="editButton" class="pure-button" href="{:U('editPiece','','')}">编辑</a>
             <a id="deleteButton" class="pure-button" href="{:U('deletePiece')}">删除</a>
             <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
-            <a id="test" class="pure-button" href="{:U('test')}">测试</a>
             <h2></h2>
 
             <table class="pure-table">
@@ -19,7 +18,6 @@
                     <tr>
                         <th><input id="checkAllIds" type="checkbox"></th>
                         <th>标题</th>
-                        <th>内容</th>
                         <th><a id="sortButton" class="pure-button pure-button-primary" href="{:U('sortPiece')}">排序</a></th>
                     </tr>
                 </thead>
@@ -29,7 +27,6 @@
                         <tr>
                             <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
                             <td>{$vo.title}</td>
-                            <td>{$vo.content}}</td>
                             <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
                         </tr>
                     </volist>

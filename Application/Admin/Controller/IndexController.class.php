@@ -7,10 +7,6 @@ class IndexController extends CommonController {
         $this->display('Admin/index');
     }
 
-    public function test(){
-    	dump(I('post.'));
-    }
-
     // public function ajaxGetUrl(){
     //     if(IS_AJAX)
     //         echo U(I('post.action'), '', '');

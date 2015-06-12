@@ -2,20 +2,20 @@
 <include file="Admin/left" />
 
     <div id="main">
-        <div class="header">
-        </div>
+        <div class="header"> </div>
 
         <div class="content">
             <h2 class="content-subhead"></h2>
-            <form class="pure-form pure-form-stacked" method="post" action="{:U('pageEdit')}">
+            <form class="pure-form pure-form-stacked" method="post" action="{:U('pieceEdit')}" enctype="multipart/form-data">
                 <fieldset>
-                    <legend>编辑单页内容</legend>
+                    <legend>编辑碎片</legend>
 
-                    <label for="catname">单页名称</label>
-                    <input name="catname" type="text" placeholder="单页名称" value="{$Think.get.pageid|get_catname}" readonly>
+                    <label for="title">标题</label>
+                    <input name="title" type="text" value="{$pieceItem.title}">
 
-                    <label for="content">单页内容</label>
-                    <textarea name="content" id="kindeditor" cols="30" rows="10">{$pageItem.content}</textarea>
+                    <label for="content">内容</label>
+
+                    <textarea name="content" id="kindeditor" cols="30" rows="10">{$pieceItem.content}</textarea>
                     <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
                     <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
                     <script>
@@ -32,7 +32,7 @@
                             });
                     </script>
 
-                    <input name="pageid" type="hidden" value="{$pageItem.pageid}">
+                    <input name="id" type="hidden" value="{$pieceItem.id}">
                     <button type="submit" class="pure-button pure-button-primary">提交</button>
                 </fieldset>
             </form>

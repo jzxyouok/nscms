@@ -1,25 +1,63 @@
 <include file="Admin/header" />
 <include file="Admin/left" />
 
-    <div id="main">
-        <div class="header"> </div>
+<div id="main">
+    <div class="header"> </div>
 
-        <div class="content">
-            <h2 class="content-subhead"></h2>
-            <form class="pure-form pure-form-stacked" method="post" action="{:U('bannerAdd')}" enctype="multipart/form-data">
-                <fieldset>
-                    <legend>新增banner</legend>
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post" action="{:U('bannerAdd')}" enctype="multipart/form-data">
+            <fieldset>
+                <legend>新增banner</legend>
 
-                    <label for="bannerImg">上传图片</label>
-                    <input name="bannerImg" type="file">
+                <label for="uploadfileid">上传图片</label>
 
-                    <label for="href">链接</label>
-                    <input name="href" type="text" placeholder="链接">
+                <input id="uploadfileid" name="uploadfileid" type="hidden">
 
-                    <button type="submit" class="pure-button pure-button-primary">提交</button>
-                </fieldset>
-            </form>
-        </div>
+                <button id="uploadButton" class="pure-button pure-button-primary">上传图片</button>
+                <i id="progress"></i>
+
+                <label for="href">链接</label>
+                <input name="href" type="text" placeholder="链接">
+
+                <button type="submit" class="pure-button pure-button-primary">提交</button>
+            </fieldset>
+        </form>
     </div>
+</div>
+
+<!-- The file input field used as target for the file upload widget -->
+<input id="fileupload" type="file" name="banner" multiple hidden>
+<script src="__PUBLIC__/jquery_fileupload/vendor/jquery.ui.widget.js"></script>
+<script src="__PUBLIC__/jquery_fileupload/jquery.iframe-transport.js"></script>
+<script src="__PUBLIC__/jquery_fileupload/jquery.fileupload.js"></script>
+<script>
+/*jslint unparam: true */
+/*global window, $ */
+$(function () {
+    $("#uploadButton").click(function(){
+        $("#fileupload").trigger("click");
+        return false;
+    });
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = "{:U('jqueryFileUpload')}";
+    var inputName = $("#fileupload").prop("name");
+    $('#fileupload').fileupload({
+        url: url,
+        formData: {"inputName":inputName},
+        dataType: 'json',
+        done: function (e, data) {
+            if(data.result.status){
+                $("#uploadfileid").val(data.result.uploadfileid);
+                $("#progress").text(data.result.info);
+            }else{
+                $("#progress").text(data.result.info);
+            }
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
 
 <include file="Admin/footer" />
