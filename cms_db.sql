@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.6.1
+-- version 4.2.12deb2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-06-08 13:02:06
+-- Generation Time: 2015-06-12 20:53:35
 -- 服务器版本： 5.5.43-0+deb8u1
 -- PHP Version: 5.6.7-1
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `cms_admin` (
-  `uid` int(10) unsigned NOT NULL COMMENT '用户ID',
+`uid` int(10) unsigned NOT NULL COMMENT '用户ID',
   `account` varchar(255) NOT NULL COMMENT '管理员账户',
   `password` varchar(255) NOT NULL COMMENT '管理员密码'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理员表';
@@ -39,14 +39,14 @@ CREATE TABLE IF NOT EXISTS `cms_admin` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_article` (
-  `id` int(10) unsigned NOT NULL,
+`id` int(10) unsigned NOT NULL,
   `pid` int(10) unsigned NOT NULL COMMENT '父级ID（栏目ID）',
   `title` varchar(255) NOT NULL COMMENT '标题',
   `author` varchar(255) NOT NULL COMMENT '来源',
   `updatetime` int(10) unsigned NOT NULL COMMENT '更新时间',
   `istop` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '置顶，0否，1是',
   `sort` int(10) unsigned NOT NULL COMMENT '排序',
-  `thumb` varchar(255) DEFAULT NULL COMMENT '缩略图路径',
+  `uploadfileid` int(10) unsigned DEFAULT NULL COMMENT '缩略图附件ID',
   `content` text NOT NULL COMMENT '内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章产品内容表';
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `cms_article` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_auth_group` (
-  `id` mediumint(8) unsigned NOT NULL,
+`id` mediumint(8) unsigned NOT NULL,
   `title` char(100) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `rules` char(80) NOT NULL DEFAULT ''
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `cms_auth_group_access` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_auth_rule` (
-  `id` mediumint(8) unsigned NOT NULL,
+`id` mediumint(8) unsigned NOT NULL,
   `name` char(80) NOT NULL DEFAULT '',
   `title` char(20) NOT NULL DEFAULT '',
   `type` tinyint(1) NOT NULL DEFAULT '1',
@@ -96,11 +96,11 @@ CREATE TABLE IF NOT EXISTS `cms_auth_rule` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_banner` (
-  `id` int(10) unsigned NOT NULL,
-  `imgpath` varchar(255) NOT NULL COMMENT 'banner图路径',
+`id` int(10) unsigned NOT NULL,
+  `uploadfileid` int(10) unsigned DEFAULT NULL COMMENT 'banner图附件ID',
   `href` varchar(255) DEFAULT NULL COMMENT 'banner图链接',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='首页banner图表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='首页banner图表';
 
 -- --------------------------------------------------------
 
@@ -109,13 +109,13 @@ CREATE TABLE IF NOT EXISTS `cms_banner` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_category` (
-  `id` int(10) unsigned NOT NULL,
+`id` int(10) unsigned NOT NULL,
   `catname` varchar(255) NOT NULL COMMENT '栏目名称',
   `pid` int(10) unsigned NOT NULL COMMENT '父级ID',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '类型，0自定义，1文章，2产品，3单页',
   `isnav` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '在导航显示，0否，1是',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='导航栏目表';
 
 -- --------------------------------------------------------
 
@@ -146,10 +146,11 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_piece` (
-  `id` int(10) unsigned NOT NULL,
+`id` int(10) unsigned NOT NULL,
   `title` varchar(255) NOT NULL COMMENT '标题',
-  `content` text NOT NULL COMMENT '内容'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='碎片调用表';
+  `content` text NOT NULL COMMENT '内容',
+  `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='碎片调用表';
 
 -- --------------------------------------------------------
 
@@ -158,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `cms_piece` (
 --
 
 CREATE TABLE IF NOT EXISTS `cms_uploads` (
-  `id` int(10) unsigned NOT NULL,
+`id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL COMMENT '上传文件的原始名称',
   `type` varchar(255) NOT NULL COMMENT '上传文件的MIME类型',
   `size` int(10) unsigned NOT NULL COMMENT '上传文件的大小',
@@ -167,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `cms_uploads` (
   `sha1` varchar(40) DEFAULT NULL COMMENT '上传文件的sha1哈希验证字符串 仅当hash设置开启后有效',
   `savename` varchar(255) NOT NULL COMMENT '上传文件的保存名称',
   `savepath` varchar(255) NOT NULL COMMENT '上传文件的保存路径'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传附件表';
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COMMENT='上传附件表';
 
 --
 -- Indexes for dumped tables
@@ -177,70 +178,67 @@ CREATE TABLE IF NOT EXISTS `cms_uploads` (
 -- Indexes for table `cms_admin`
 --
 ALTER TABLE `cms_admin`
-  ADD PRIMARY KEY (`uid`);
+ ADD PRIMARY KEY (`uid`);
 
 --
 -- Indexes for table `cms_article`
 --
 ALTER TABLE `cms_article`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cms_auth_group`
 --
 ALTER TABLE `cms_auth_group`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cms_auth_group_access`
 --
 ALTER TABLE `cms_auth_group_access`
-  ADD UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
-  ADD KEY `uid` (`uid`),
-  ADD KEY `group_id` (`group_id`);
+ ADD UNIQUE KEY `uid_group_id` (`uid`,`group_id`), ADD KEY `uid` (`uid`), ADD KEY `group_id` (`group_id`);
 
 --
 -- Indexes for table `cms_auth_rule`
 --
 ALTER TABLE `cms_auth_rule`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `cms_banner`
 --
 ALTER TABLE `cms_banner`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cms_category`
 --
 ALTER TABLE `cms_category`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cms_custom_link`
 --
 ALTER TABLE `cms_custom_link`
-  ADD PRIMARY KEY (`linkid`);
+ ADD PRIMARY KEY (`linkid`);
 
 --
 -- Indexes for table `cms_page`
 --
 ALTER TABLE `cms_page`
-  ADD PRIMARY KEY (`pageid`);
+ ADD PRIMARY KEY (`pageid`);
 
 --
 -- Indexes for table `cms_piece`
 --
 ALTER TABLE `cms_piece`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cms_uploads`
 --
 ALTER TABLE `cms_uploads`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -250,42 +248,42 @@ ALTER TABLE `cms_uploads`
 -- AUTO_INCREMENT for table `cms_admin`
 --
 ALTER TABLE `cms_admin`
-  MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID';
+MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID';
 --
 -- AUTO_INCREMENT for table `cms_article`
 --
 ALTER TABLE `cms_article`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cms_auth_group`
 --
 ALTER TABLE `cms_auth_group`
-  MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cms_auth_rule`
 --
 ALTER TABLE `cms_auth_rule`
-  MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cms_banner`
 --
 ALTER TABLE `cms_banner`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cms_category`
 --
 ALTER TABLE `cms_category`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `cms_piece`
 --
 ALTER TABLE `cms_piece`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cms_uploads`
 --
 ALTER TABLE `cms_uploads`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
