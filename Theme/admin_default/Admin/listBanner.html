@@ -1,0 +1,42 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead">banner管理</h2>
+        <a class="pure-button" href="{:U('addBanner')}">新增</a>
+        <a id="editButton" class="pure-button" href="{:U('editBanner','','')}">编辑</a>
+        <a id="deleteButton" class="pure-button" href="{:U('delete',array('table'=>'banner'))}">删除</a>
+        <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
+        <h2></h2>
+
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th><input id="checkAllIds" type="checkbox"></th>
+                    <th>预览</th>
+                    <th>链接</th>
+                    <th>
+                        <a id="sortButton" class="pure-button pure-button-primary" href="{:U('sort',array('table'=>'banner'))}">排序</a>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <volist name="bannerList" id="vo">
+                    <tr>
+                        <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
+                        <td><img class="admin-list-image" src="{$vo.uploadfileid|get_uploadfile_path}" alt=""></td>
+                        <td><input type="text" value="{$vo.href}" readonly></td>
+                        <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>            
+    </div>
+</div>
+
+<include file="Admin/footer" />

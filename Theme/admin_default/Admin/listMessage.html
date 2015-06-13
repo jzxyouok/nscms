@@ -1,0 +1,40 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead">留言管理</h2>
+        <a id="deleteButton" class="pure-button" href="{:U('delete',array('table'=>'message'))}">删除</a>
+        <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
+        <h2></h2>
+
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th><input id="checkAllIds" type="checkbox"></th>
+                    <th>姓名</th>
+                    <th>联系方式</th>
+                    <th>留言时间</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <volist name="messageList" id="vo">
+                    <tr>
+                        <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
+                        <td <eq name="vo.isread" value="0">style="font-weight:bold;"</eq>><a href="{:U('showMessage',array('id'=>$vo['id']))}">{$vo.name}</a></td>
+                        <td>{$vo.contact}</td>
+                        <td>{$vo.createtime|date="Y/m/d H:i", ###}</td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <h2></h2>
+        <div id="page">{$show}</div>
+    </div>
+</div>
+
+<include file="Admin/footer" />

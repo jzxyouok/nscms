@@ -1,0 +1,97 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header"> </div>
+
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post" action="{:U('articleAdd')}">
+            <fieldset>
+                <legend>
+                    新增文章&nbsp;
+                    <a href="{:U('listArticle',array('catid'=>I('get.catid')))}">[返回文章列表]</a>
+                </legend>
+
+                <input type="hidden" name="pid" value="{$Think.get.catid}">
+
+                <label for="uploadfileid">缩略图</label>
+                <input id="uploadfileid" name="uploadfileid" type="hidden">
+
+                <button id="uploadButton" class="pure-button pure-button-primary">上传图片</button>
+                <i id="progress"></i>
+
+                <label for="title">标题</label>
+                <input name="title" type="text">
+
+                <label for="author">来源</label>
+                <input name="author" type="text">
+
+                <label for="istop">置顶</label>
+                <label for="istop0" class="pure-radio">
+                    <input name="istop" id="istop0" type="radio" value="0" checked> 否
+                </label>
+                <label for="istop1" class="pure-radio">
+                    <input name="istop" id="istop1" type="radio" value="1"> 是
+                </label>
+
+                <label for="content">内容</label>
+
+                <textarea name="content" id="kindeditor" cols="30" rows="10"></textarea>
+                <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                <script>
+                        KindEditor.ready(function(K) {
+                                window.editor = K.create('#kindeditor', {
+                                    uploadJson : "{:U('kindeditorImageUpload')}",
+                                    allowFileManager : false,
+                                    resizeType : 1,
+                                    items : [
+                                        'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                                        'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                                        'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+                                });
+                        });
+                </script>
+
+                <button type="submit" class="pure-button pure-button-primary">提交</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- The file input field used as target for the file upload widget -->
+<input id="fileupload" type="file" name="banner" multiple hidden>
+<script src="__PUBLIC__/jquery_fileupload/vendor/jquery.ui.widget.js"></script>
+<script src="__PUBLIC__/jquery_fileupload/jquery.iframe-transport.js"></script>
+<script src="__PUBLIC__/jquery_fileupload/jquery.fileupload.js"></script>
+<script>
+/*jslint unparam: true */
+/*global window, $ */
+$(function () {
+    $("#uploadButton").click(function(){
+        $("#fileupload").trigger("click");
+        return false;
+    });
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = "{:U('jqueryFileUpload')}";
+    var inputName = $("#fileupload").prop("name");
+    $('#fileupload').fileupload({
+        url: url,
+        formData: {"inputName":inputName},
+        dataType: 'json',
+        done: function (e, data) {
+            if(data.result.status){
+                $("#uploadfileid").val(data.result.uploadfileid);
+                $("#progress").text(data.result.info);
+            }else{
+                $("#progress").text(data.result.info);
+            }
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+
+<include file="Admin/footer" />

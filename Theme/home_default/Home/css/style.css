@@ -1,0 +1,83 @@
+body, ul, li, ol, dl, dd, dt, form, img, h1, h2, h3, h4, h5, h6, tr, th, td, map, p, iframe{ margin:0px; padding:0px; }
+ul, li, ol, dl, dd, dt { list-style-type:none; }
+img { border:0px; }
+a{text-decoration:none; color:#676060;}
+a:hover{color:#0c60c0;}
+body{font-size:12px; font-family:'SimSun'; background:url(../images/1.jpg) repeat;}
+.headerWarp{ width:100%; height:104px; background:url(../images/headerBg.jpg) repeat-x left top; font-family:'Microsoft YaHei';}
+.header{width:1258px; height:104px; margin:0 auto;}
+.logo{display:table; height:104px; width:368px; float:left; text-align:center;}
+.logo p{display:table-cell; vertical-align:middle;}
+.logo a{display:block; color:#fff; letter-spacing:2px; font-size:28px;}
+.nav{width:880px; height:104px; float:right;}
+.nav li{float:left; width:125px; height:104px; background:url(../images/navBg.png) no-repeat left top; text-align:center; position:relative; z-index:10;}
+.nav h2 > a{display:block; color:#fff; font-weight:normal; font-size:14px; line-height:104px;}
+.nav h2 > a:hover{background:#d67b3f;}
+.nav li p{display:none; position:absolute; left:0; z-index:11; color:#000; width:125px; padding:15px 0; background:#d67b3f; opacity:0.7; filter:alpha(Opacity=70);}
+.nav li p a{display:block; width:125px; height:30px; line-height:30px; color:#fff; font-family:'SimSun';}
+.nav li p a:hover{background:#18191b;}
+.nav li:hover p{display:block;}
+.m_banner{ background:#fff;height:437px; position:relative;}
+.m_banner .banner{height:437px;width:100%; position:absolute;top:0;left:0; background-position:center top;}
+.banner_ctrl{ height:100px;width:1258px;position:absolute;top:50%;left:50%;margin:-50px 0 0 -629px;z-index:2;}
+.banner_ctrl a{ display:block;width:30px;height:100px; background:url(../images/banner_ctrl.png) no-repeat; position:absolute; opacity:.1;filter: alpha(opacity=10);-moz-opacity:0.1;}
+.banner_ctrl a.prev{left:-30px;}
+.banner_ctrl a.next{right:-30px; background-position:-30px 0;}
+.bannerBg{position:absolute; width:100%; height:3px; background:url(../images/bannerBg.png) repeat-x left top; z-index:3; left:0; top:0px;}
+.main{width:1258px; margin:20px auto 40px; overflow:hidden;}
+.mainL{width:394px; float:left;}
+.mainTitle{width:100%; height:30px; line-height:30px; font-size:18px; background:url(../images/titleBg.png) no-repeat 1px center; overflow:hidden; font-family:'Microsoft YaHei';}
+.mainTitle span{display:block; float:left; height:30px; padding-left:27px; font-weight:500;}
+.mainTitle em{display:block; float:left; height:30px; padding-left:14px; font-style:normal; color:#d57b40; font-family:'Times New Roman'}
+.mainTitle a{display:table; float:right; height:30px;}
+.mainTitle img{padding-bottom:6px;}
+.mainAbout{width:394px; overflow:hidden; margin-top:20px;}
+.mainAbout img{float:left; width:150px; height:100px; padding-right:15px;}
+.mainAbout span{display:block; line-height:23px;}
+.mainC{width:520px; float:left; padding:0 40px;}
+.mainR{width:264px; float:right;}
+.mainC-rolling{width:520px;height:156px;margin-top:20px;overflow:hidden;}
+.mainC-rolling ul{float:left;}
+.mainC-rolling ul li{float:left; width:160px; padding:0 7px;}
+.mainC-rolling ul li img{width:160px; height:120px; display:block;}
+.mainC-rolling ul li span{display:block; width:160px; height:36px; color:#4b4b4b; text-align:center; line-height:36px; font-size:12px;}
+.mainC-rolling ul li a{display:block;}
+.mainContact{width:264px; line-height:24px; padding-top:13px;}
+.footer{ width:100%; height:80px; background:#1e1e1e; line-height: 80px; text-align:center; color:#bbbbbb;}
+.footer a{color:#bbbbbb;}
+
+.Nmain{width:1258px; margin:0 auto; overflow:hidden; background:url(../images/sidebarBg.jpg) repeat-y left top;}
+.sidebar{width:220px; float:left;}
+.sidebarT{width:220px; height:38px; background:url(../images/sidebarTBg.jpg) repeat-x left top;}
+.sidebarT span{display:block; height:38px; line-height:38px; margin-left:15px; background:url(../images/sidebarTBg01.jpg) no-repeat 0; padding-left:20px; color:#fff; font-family:'Microsoft YaHei'; font-size:14px;}
+.sidebarM{width:190px; overflow:hidden; padding:15px;}
+.sidebarM li{width:190px; height:32px; line-height:32px; background:url(../images/sidebarM01.png) no-repeat 0; text-align:center;}
+.sidebarM li a{display:block; width:190px; height:32px; background:url(../images/sidebarM02.png) no-repeat left bottom; position:relative; color:#505050;}
+.sidebarM li a:hover span{display:block; width:190px; height:30px; left:0; top:0; position:absolute; background:#000; opacity:0.1;}
+.sidebarW{width:190px; padding:15px; line-height:24px;}
+.content{width:1037px; float:right;} 
+
+.breadCrumb{width:1033px; height:36px; line-height:36px; background:url(../images/breadCrumbBg.jpg) repeat-x left top; border:solid 1px #d4d4d4;}
+.breadCrumb p{margin-left:15px; background:url(../images/breadCrumb.jpg) no-repeat 0; padding-left:25px;}
+.content{width:1035px; background:#fff url(../images/contentBg.jpg) repeat-x left top; min-height:350px;}
+.contentPage{padding:30px 30px 0; width:975px; text-indent:2em; color:##505050; line-height:24px;}
+.contentAbout{padding:50px 50px 0; width:935px; text-indent:2em; color:##505050; line-height:24px;}
+.contentAbout img{float:right; display:block; padding:2px; border:solid 1px #dbecf3; margin-left:30px;}
+.contentNews{width:975px; padding:30px 30px 0;}
+.contentNews li{width:950px; height:35px; padding-left:25px; background:url(../images/listBg.jpg) no-repeat 0px center; line-height:35px; border-bottom:dashed 1px #cbcbcb;}
+.contentNews li span{color:#999; float:right; font-family:'Microsoft YaHei';}
+.contentList{width:975px; padding:30px 30px 0;}
+.contentList li{float:left; width:220px; padding:0 11px;}
+.contentList li img{width:220px; height:165px; display:block;}
+.contentList li a{display:block;}
+.contentList li span{display:block; height:30px; line-height:30px; text-align:center;}
+.contentMessage{width:490px; margin-top:50px; margin-left:60px; padding-bottom:30px;}
+.contentMessage div{overflow:hidden; padding-bottom:10px;}
+.contentMessage label{width:80px; display:block; float:left; margin:0 10px 0 0; padding:0; height:30px; line-height:30px; text-align:right; color:#7e7e7e;}
+.contentMessage input{width:360px; display:block; float:left; margin:0; padding:0; height:28px; line-height:28px; border:solid 1px #dddddd; background:#fbfbfb;}
+.contentMessage textarea{width:360px; height:80px; margin:0; padding:0; border:solid 1px #dddddd; background:#fbfbfb;}
+.contentMessage button{display:block; width:100px; height:30px; border:solid 1px #dddddd; background:#fbfbfb; border-radius:5px; overflow:hidden;}
+
+.friendLink{float:left; width:968px; padding:0 11px; overflow:hidden; margin:30px 20px 0;}
+.friendLink li{float:left; width:220px; padding:0 11px; padding-bottom:10px;}
+.friendLink li img{width:220px; height:50px; display:block;}

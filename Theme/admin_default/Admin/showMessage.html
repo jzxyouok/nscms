@@ -1,0 +1,30 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post">
+            <fieldset>
+                <legend>查看留言</legend>
+
+                <label for="name">姓名</label>
+                <input name="name" type="text" value="{$messageItem.name}" readonly>
+
+                <label for="contact">联系方式</label>
+                <input name="contact" type="text" value="{$messageItem.contact}" readonly>
+
+                <label for="createtime">留言时间</label>
+                <input name="createtime" type="text" value="{$messageItem.createtime|date='Y/m/d H:i', ###}" readonly>
+
+                <label for="content">留言内容</label>
+                <textarea name="content" id="" cols="30" rows="10" readonly>{$messageItem.content}</textarea>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<include file="Admin/footer" />

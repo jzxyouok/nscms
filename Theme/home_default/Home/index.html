@@ -1,0 +1,53 @@
+<include file="Home/header" />
+
+<div class="main">
+	<div class="mainL">
+		<div class="mainTitle">
+			<span>公司简介</span>
+			<em>COMPANY PROFILE</em>
+			<a href="#">
+				<img src="{:get_tpl_path()}/images/more.png" width="34" height="5"  alt=""/>
+			</a>
+		</div>
+		<div class="mainAbout">
+			<a href="#">
+				<img src="{:get_tpl_path()}/images/01.jpg" width="150" height="100"  alt=""/>
+			</a>
+			<span>某某物流有限公司是由郑州运管部门批准，专门从事全国各地运输服务的股份制企业。本公司拥有一批专业的管理 人员和专业的运输队伍，以严格，科学的管理手段，现代化的办公设施，为客户提供最优质的服务。本公司拥有一批专业的管理 人员和专业的运输队伍，以严格，科学的管理手段，现代化的办公设施，为客户提供最优质的服务。</span>
+		</div>
+	</div>
+	<div class="mainC">
+		<div class="mainTitle"><span>运力展示</span><em>CAPACITY</em><a href="#"><img src="{:get_tpl_path()}/images/more.png" width="34" height="5"  alt=""/></a></div>
+		<div id="mainC-rolling" class="mainC-rolling">
+			<div style="width:1500%;">
+				<ul id="mainC-rolling1" class="mainC-rolling1">
+					<php>$articleList = get_article_list(6);</php>
+					<volist name="articleList" id="al">
+						<li><a href="{$al.id}"><img src="{:get_uploadfile_path($al['uploadfileid'])}" /><span>{$al.title}</span></a></li>
+					</volist>
+				</ul>
+				<ul id="mainC-rolling2" class="mainC-rolling2">
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+		PixelScroll({
+			Id:"mainC-rolling",//第一个ID
+			IdOne:"mainC-rolling1",//第二个ID
+			IdTwo:"mainC-rolling2",//第三个ID
+			Space:174,//每次滚动像素
+			Direction:"left",//滚动方向
+			Speed:2000//滚动速度
+		});
+		</script> 
+	</div>
+	<div class="mainR">
+		<div class="mainTitle">
+			<span>联系我们</span>
+			<em>CONTACT US</em>
+		</div>
+		<div class="mainContact">杭州站：杭州市郑上路西岗路西1288号商铺<br>电话：0571-12345678<br>济南站：济南市山东大道387号<br>电话：0571-12345678<br>南京站：南京市西岗路109号<br>电话：0571-12345678<br>义乌站：义乌市郑上路西岗路西988号 </div>
+	</div>
+</div>
+
+<include file="Home/footer" />

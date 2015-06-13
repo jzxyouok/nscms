@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>纳森01号模版</title>
+
+	<load href="{:get_tpl_path()}/css/style.css" />
+	<load href="__PUBLIC__/jquery-1.11.3.min.js" />
+	<load href="{:get_tpl_path()}/js/index.js" />
+</head>
+<body>
+<div class="headerWarp">
+	<div class="header">
+		<h1 class="logo">
+			<p><a href="#"><img src="{:get_tpl_path()}/images/logo.png" width="215" height="62"  alt=""/></a></p>
+		</h1>
+		<ul class="nav">
+			<li>
+				<h2><a href="index.html">网站首页</a></h2>
+			</li>
+			<!-- 一级栏目 -->
+			<php>$listCat1 = get_sub_category(0);</php>
+            <volist name="listCat1" id="vo">
+            	<li>
+					<h2>
+						<if condition="has_sub_category($vo['id'])">
+                            <a href="javascript:void(0)">{$vo.catname}</a>
+                        <else />
+                            <a href="{$vo.id}">{$vo.catname}</a>
+                        </if>
+					</h2>
+					<!-- 二级栏目 -->
+					<php>$listCat2 = get_sub_category($vo['id']);</php>
+					<empty name="listCat2">
+					<else />
+						<p>
+							<volist name="listCat2" id="vo2">
+								<a href="{$vo2.id}">{$vo2.catname}</a>
+	                    	</volist>
+						</p>
+					</empty>
+				</li>
+            </volist>
+			
+		</ul>
+	</div>
+</div>
+<div class="m_banner">
+	<div class="bannerBg"></div>
+	<!-- banner -->
+	<php>$bannerList = get_banner_list();</php>
+	<volist name="bannerList" id="bl">
+		<div class="banner" style=" background-image:url({:get_uploadfile_path($bl['uploadfileid'])});<neq name='i' value='1'>display:none;</neq>"></div>
+	</volist>
+
+	<div class="banner_ctrl"> <a href="javascript:;" class="prev" title=""></a> <a href="javascript:;" class="next" title=""></a> </div>
+</div>

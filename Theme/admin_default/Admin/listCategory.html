@@ -1,0 +1,117 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+    <div id="main">
+        <div class="header">
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead">栏目管理</h2>
+            <a class="pure-button" href="{:U('addCategory')}">新增</a>
+            <a id="editButton" class="pure-button" href="{:U('editCategory','','')}">编辑</a>
+            <a id="deleteButton" class="pure-button" href="{:U('deleteCategory')}">删除</a>
+            <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
+            <h2></h2>
+
+            <table class="pure-table">
+                <thead>
+                    <tr>
+                        <th><input id="checkAllIds" type="checkbox"></th>
+                        <th>栏目名称</th>
+                        <th>栏目类型</th>
+                        <!-- <th>父级栏目</th> -->
+                        <th>导航显示</th>
+                        <th>
+                            <a id="sortButton" class="pure-button pure-button-primary" href="{:U('sort',array('table'=>'category'))}">排序</a>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- 一级栏目 -->
+                    <php>$listCat1 = get_sub_category(0);</php>
+                    <volist name="listCat1" id="vo" >
+                        <tr class="pure-table-odd">
+                            <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
+                            <td>
+                                <if condition="has_sub_category($vo['id'])">
+                                    {$vo.catname}
+                                <else />
+                                    <switch name="vo.id|get_category_type_no">
+                                        <case value="0">
+                                            <a href="{:U('CustomLink/editCustomLink',array('linkid'=>$vo['id']))}">{$vo.catname}</a>
+                                        </case>
+                                        <case value="1">
+                                            <a href="{:U('Page/editPage',array('pageid'=>$vo['id']))}">{$vo.catname}</a>
+                                        </case>
+                                        <case value="2">
+                                            <a href="{:U('Article/listArticle',array('catid'=>$vo['id']))}">{$vo.catname}</a>
+                                        </case>
+                                    </switch>
+                                </if>
+                            </td>
+                            <td>{$vo.type|get_category_type_name}</td>
+                            <!-- <td>{$vo.pid|get_catname}</td> -->
+                            <td> {$vo.isnav|get_yes_no} </td>
+                            <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
+                        </tr>
+                        <!-- 二级栏目 -->
+                        <php>$listCat2 = get_sub_category($vo['id']);</php>
+                        <volist name="listCat2" id="vo2" >
+                            <tr>
+                                <td><input class="ids" type="checkbox" value="{$vo2.id}"></td>
+                                <td>_L_
+                                    <if condition="has_sub_category($vo2['id'])">
+                                        {$vo2.catname}
+                                    <else />
+                                        <switch name="vo2.id|get_category_type_no">
+                                            <case value="0">
+                                                <a href="{:U('CustomLink/editCustomLink',array('linkid'=>$vo2['id']))}">{$vo2.catname}</a>
+                                            </case>
+                                            <case value="1">
+                                                <a href="{:U('Page/editPage',array('pageid'=>$vo2['id']))}">{$vo2.catname}</a>
+                                            </case>
+                                            <case value="2">
+                                                <a href="{:U('Article/listArticle',array('catid'=>$vo2['id']))}">{$vo2.catname}</a>
+                                            </case>
+                                        </switch>
+                                    </if>
+                                </td>
+                                <td>{$vo2.type|get_category_type_name}</td>
+                                <!-- <td>{$vo2.pid|get_catname}</td> -->
+                                <td> {$vo2.isnav|get_yes_no} </td>
+                                <td><input class="cms-input-order" type="text" value="{$vo2.sort}"></td>
+                            </tr>
+                            <!-- 三级栏目 -->
+                            <php>$listCat3 = get_sub_category($vo2['id']);</php>
+                            <volist name="listCat3" id="vo3" >
+                                <tr>
+                                    <td><input class="ids" type="checkbox" value="{$vo3.id}"></td>
+                                    <td>___L_
+                                        <switch name="vo3.id|get_category_type_no">
+                                            <case value="0">
+                                                <a href="{:U('CustomLink/editCustomLink',array('linkid'=>$vo3['id']))}">{$vo3.catname}</a>
+                                            </case>
+                                            <case value="1">
+                                                <a href="{:U('Page/editPage',array('pageid'=>$vo3['id']))}">{$vo3.catname}</a>
+                                            </case>
+                                            <case value="2">
+                                                <a href="{:U('Article/listArticle',array('catid'=>$vo3['id']))}">{$vo3.catname}</a>
+                                            </case>
+                                        </switch>
+                                    </td>
+                                    <td>{$vo3.type|get_category_type_name}</td>
+                                    <!-- <td>{$vo3.pid|get_catname}</td> -->
+                                    <td> {$vo3.isnav|get_yes_no} </td>
+                                    <td><input class="cms-input-order" type="text" value="{$vo3.sort}"></td>
+                                </tr>                        
+                            </volist>
+                        </volist>
+                    </volist>
+
+                </tbody>
+            </table>            
+        </div>
+    </div>
+
+<include file="Admin/footer" />

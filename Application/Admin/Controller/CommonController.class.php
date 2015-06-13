@@ -19,7 +19,8 @@ class CommonController extends Controller {
     
     // kindeditor上传图片处理
     public function kindeditorImageUpload(){
-        $upload = new \Think\Upload(C('UPLOAD_CONFIG.editor'));// 实例化上传类
+        $upload = new \Think\Upload(C('IMG_UPLOAD'));// 实例化上传类
+        $upload->savePath = 'editor/';
         $info = $upload->upload();
         if(!$info) {// 上传错误提示错误信息
             echo json_encode(array('error' => 1, 'message' => $upload->getError()));
@@ -31,7 +32,8 @@ class CommonController extends Controller {
 
     // jquery.fileupload上传处理
     public function jqueryFileUpload(){
-        $upload = new \Think\Upload(C('UPLOAD_CONFIG.'.I('post.inputName')));// 实例化上传类
+        $upload = new \Think\Upload(C('IMG_UPLOAD'));// 实例化上传类
+        $upload->savePath = I('post.inputName') . '/';
         $info = $upload->upload();
         if(!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
@@ -46,10 +48,42 @@ class CommonController extends Controller {
         }
     }
 
+    //排序 ajax提交处理
+    public function sort(){
+        //获取排序数组，ID数组
+        $sorts = I('post.sorts');
+        $ids = I('post.ids');
+        //更新排序字段
+        $model = M(I('get.table'));
+        for ($i=0, $success = 0; $i < count($sorts); $i++) {
+            $result = $model->where('id='.$ids[$i])->setField('sort', intval($sorts[$i]));
+            if($result)
+                $success++;
+        }
+        $this->success(L('_OPERATION_SUCCESS_'));
+    }
+
+    //删除
+    public function delete(){
+        //获取ajax提交的ID数组
+        $ids = I('post.ids');
+        //循环删除
+        $model = M(I('get.table'));
+        $success = 0;
+        foreach ($ids as $id) {
+            $affectedRows = $model->delete($id); // 从数据库删除记录
+
+            if($affectedRows)
+                $success++;
+        }        
+        //判断成功数目
+        if($success == count($ids))
+            $this->success(L('_OPERATION_SUCCESS_'));
+        else
+            $this->error($model->getError());
+    }
 
     public function test(){
-        echo get_uploadfile_path(37);
-        //$this->display('Admin/test');
-        //echo array_multiToSingle(array('aa' => array('bb' => 'cc')));
+        echo get_tpl_path();
     }
 }
