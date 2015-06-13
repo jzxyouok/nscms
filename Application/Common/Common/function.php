@@ -54,18 +54,14 @@ function get_uploadfile_path($id){
 		return __ROOT__ . '/Public/images/nasen_logo.jpg';
 }
 
-
 /**
- * 获取banner列表
- * @return array banner二维数组
+ * 获取(父)栏目名称
+ * @param int $catid (父)栏目ID
+ * @return string (父)栏目名称
  */
-function get_banner_list(){
-	return M('banner')->select();
-}
-
-function get_article_list($catid, $p = 1, $pageRows = 0){
-	$articleModel = M('article');
-	if($pageRows == 0)
-		$pageRows = $articleModel->where(array('pid'=>$catid))->count();
-	return M('article')->where(array('pid'=>$catid))->order('istop desc,sort desc')->page($p, $pageRows)->select();
+function get_catname($pid = 0){
+	if($pid == 0)
+		return '';
+	else
+		return M('category')->where('id='.$pid)->getField('catname');
 }

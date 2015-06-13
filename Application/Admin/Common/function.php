@@ -52,15 +52,3 @@ function get_yes_no($binary){
 	else
 		return L('NO');
 }
-
-/**
- * 获取(父)栏目名称
- * @param int $catid (父)栏目ID
- * @return string (父)栏目名称
- */
-function get_catname($pid = 0){
-	if($pid == 0)
-		return '';
-	else
-		return M('category')->where('id='.$pid)->getField('catname');
-}

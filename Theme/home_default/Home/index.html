@@ -13,7 +13,9 @@
 			<a href="#">
 				<img src="{:get_tpl_path()}/images/01.jpg" width="150" height="100"  alt=""/>
 			</a>
-			<span>某某物流有限公司是由郑州运管部门批准，专门从事全国各地运输服务的股份制企业。本公司拥有一批专业的管理 人员和专业的运输队伍，以严格，科学的管理手段，现代化的办公设施，为客户提供最优质的服务。本公司拥有一批专业的管理 人员和专业的运输队伍，以严格，科学的管理手段，现代化的办公设施，为客户提供最优质的服务。</span>
+			<!-- 碎片调用 -->
+			<php>$pieceItem1 = get_piece(1);</php>
+			<span>{$pieceItem1.content}</span>
 		</div>
 	</div>
 	<div class="mainC">
@@ -46,7 +48,9 @@
 			<span>联系我们</span>
 			<em>CONTACT US</em>
 		</div>
-		<div class="mainContact">杭州站：杭州市郑上路西岗路西1288号商铺<br>电话：0571-12345678<br>济南站：济南市山东大道387号<br>电话：0571-12345678<br>南京站：南京市西岗路109号<br>电话：0571-12345678<br>义乌站：义乌市郑上路西岗路西988号 </div>
+		<!-- 碎片调用 -->
+		<php>$pieceItem2 = get_piece(2);</php>
+		<div class="mainContact">{$pieceItem2.content}</div>
 	</div>
 </div>
 

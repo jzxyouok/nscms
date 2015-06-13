@@ -1,0 +1,14 @@
+<div class="sidebar">
+	<div class="sidebarT"><span>栏目导航</span></div>
+	<ul class="sidebarM">
+		<!-- 一级栏目 -->
+		<php>$listCat1 = get_sub_category(0);</php>
+        <volist name="listCat1" id="vo">
+        	<li><a href="{$vo.id}">{$vo.catname}<span></span></a></li>
+        </volist>
+	</ul>
+	<div class="sidebarT"><span>联系我们</span></div>
+	<!-- 碎片调用 -->
+	<php>$pieceItem3 = get_piece(3);</php>
+	<div class="sidebarW">{$pieceItem3.content}</div>
+</div>
