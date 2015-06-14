@@ -4,7 +4,7 @@ use Think\Controller;
 class PieceController extends CommonController {
 	// 
 	public function listPiece(){
-		$this->pieceList = M('piece')->order('sort desc')->select();
+		$this->pieceList = M('piece')->order('sort desc,id')->select();
 		$this->display(MODULE_NAME.'/listPiece');
 	}
 

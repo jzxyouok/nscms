@@ -1,0 +1,37 @@
+<include file="Home/header" />
+
+<div class="Nmain">
+
+	<include file="Home/left" />
+
+	<div class="content">
+		<div class="breadCrumb">
+			<p>您现在的位置：<a href="{:U('index')}">网站首页</a> > {$Think.get.catid|get_catname}</p>
+		</div>
+		<div class="content">
+			<ul class="contentList">
+				<!-- 图片列表 -->
+				<php>
+					$p = empty(I('get.p')) ? 1 : I('get.p');
+					$articleList = get_article_list(I('get.catid'), 8, $p);
+					$show = get_list_page_show(I('get.catid'), 8);
+				</php>
+				<volist name="articleList" id="al">
+					<li><a href="{:U('showArticle',array('id'=>$al['id']))}"><img src="{:get_uploadfile_path($al['uploadfileid'])}" width="160" height="120"  alt=""/><span>{$al.title}</span></a></li>
+				</volist>
+				
+			</ul>
+		</div>
+		<div class="list-picture-page" id="page">{$show}</div>
+	</div>
+</div>
+
+<script>
+	// 加载分页按钮样式
+	$("#page .prev").addClass("pure-button");
+	$("#page .num").addClass("pure-button");
+	$("#page .next").addClass("pure-button");
+	$("#page .current").addClass("pure-button pure-button-primary");
+</script>
+
+<include file="Home/footer" />

@@ -65,3 +65,14 @@ function get_catname($pid = 0){
 	else
 		return M('category')->where('id='.$pid)->getField('catname');
 }
+
+/**
+ * 验证验证码
+ * @param  string $code 验证码字符串
+ * @param  string $id   验证码编号
+ * @return boolean      布尔值结果
+ */
+function check_verify($code, $id = ''){
+    $verify = new \Think\Verify();
+    return $verify->check($code, $id);
+}

@@ -1,5 +1,7 @@
 <?php
 return array(
+
+    'DEFAULT_CONTROLLER' => 'Common',
     
     // 图片上传Upload类实例化参数
     'IMG_UPLOAD' => array(
@@ -24,7 +26,7 @@ return array(
     'VIEW_PATH' => './Theme/',
 
     // 每页显示数量
-    'PAGE_ROWS' => 2,
+    'PAGE_ROWS' => 7,
 
     // 实例化Page类参数
     'PAGE_CONFIG' => array(
@@ -35,4 +37,7 @@ return array(
         'last'   => '...%TOTAL_PAGE%',
         'theme'  => '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%',
     ),
+
+    // 普通用户禁用操作
+    'OPERATION_DENY_LIST' => array(),
 );

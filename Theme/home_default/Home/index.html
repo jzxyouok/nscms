@@ -15,7 +15,7 @@
 			</a>
 			<!-- 碎片调用 -->
 			<php>$pieceItem1 = get_piece(1);</php>
-			<span>{$pieceItem1.content}</span>
+			<span>{$pieceItem1.content|htmlspecialchars_decode}</span>
 		</div>
 	</div>
 	<div class="mainC">
@@ -23,7 +23,8 @@
 		<div id="mainC-rolling" class="mainC-rolling">
 			<div style="width:1500%;">
 				<ul id="mainC-rolling1" class="mainC-rolling1">
-					<php>$articleList = get_article_list(6);</php>
+					<!-- 产品列表 -->
+					<php>$articleList = get_article_list(6, 7);</php>
 					<volist name="articleList" id="al">
 						<li><a href="{$al.id}"><img src="{:get_uploadfile_path($al['uploadfileid'])}" /><span>{$al.title}</span></a></li>
 					</volist>
@@ -50,7 +51,7 @@
 		</div>
 		<!-- 碎片调用 -->
 		<php>$pieceItem2 = get_piece(2);</php>
-		<div class="mainContact">{$pieceItem2.content}</div>
+		<div class="mainContact">{$pieceItem2.content|htmlspecialchars_decode}</div>
 	</div>
 </div>
 

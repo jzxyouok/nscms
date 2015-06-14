@@ -15,11 +15,15 @@
                     <input name="catname" type="text" placeholder="栏目名称" value="{$categoryItem.catname}">
 
                     <label for="type">栏目类型</label>
-                    <select name="type">
-                        <for start="0" end="3">
-                            <option value="{$i}" <eq name="categoryItem.type" value="$i">selected</eq>>{$i|get_category_type_name}</option>
-                        </for>
-                    </select>
+                    <label for="type0" class="pure-radio">
+                        <input id="type0" name="type" type="radio" value="0" <eq name="categoryItem.type" value="0">checked</eq>> 自定义
+                    </label>
+                    <label for="type1" class="pure-radio">
+                        <input id="type1" name="type" type="radio" value="1" <eq name="categoryItem.type" value="1">checked</eq>> 单页
+                    </label>
+                    <label for="type2" class="pure-radio">
+                        <input id="type2" name="type" type="radio" value="2" <eq name="categoryItem.type" value="2">checked</eq>> 文章/图片
+                    </label>
 
                     <label for="pid">父级栏目</label>
                     <select name="pid" id="pid">
@@ -43,12 +47,16 @@
                         </volist>
                     </select>
 
+                    <label for="isnav">导航显示</label>
                     <label for="isnav1" class="pure-radio">
                         <input name="isnav" id="isnav1" type="radio" value="0" <eq name="categoryItem.isnav" value="0">checked</eq>> 否
                     </label>
                     <label for="isnav2" class="pure-radio">
                         <input name="isnav" id="isnav2" type="radio" value="1" <eq name="categoryItem.isnav" value="1">checked</eq>> 是
                     </label>
+
+                    <label for="catname">定制模板<i>（留空为默认）</i></label>
+                    <input name="tpl" type="text" placeholder="定制模板（留空为默认）" value="{$categoryItem.tpl}">
 
                     <input name="id" type="hidden" value="{$categoryItem.id}">
                     <button type="submit" class="pure-button pure-button-primary">提交</button>

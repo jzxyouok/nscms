@@ -81,3 +81,5 @@ body{font-size:12px; font-family:'SimSun'; background:url(../images/1.jpg) repea
 .friendLink{float:left; width:968px; padding:0 11px; overflow:hidden; margin:30px 20px 0;}
 .friendLink li{float:left; width:220px; padding:0 11px; padding-bottom:10px;}
 .friendLink li img{width:220px; height:50px; display:block;}
+
+.list-picture-page{padding:44px;}

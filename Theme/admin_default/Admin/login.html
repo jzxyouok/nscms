@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>纳森CMS后台登陆</title>
+	<load href="__PUBLIC__/pure_css/pure-min.css" />
+	<load href="{:get_tpl_path()}/css/admin.css" />
+	<load href="__PUBLIC__/jquery-1.11.3.min.js" />
+</head>
+<body>
+	<div class="admin-login">
+		<h2>后台登陆</h2>
+		<form class="pure-form" method="post" action="{:U('signIn')}">
+		    <fieldset class="pure-group">
+		        <input name="account" type="text" class="pure-input-1" placeholder="用户名">
+		        <input name="password" type="text" class="pure-input-1" placeholder="密码">
+		        <input name="verify" type="text" class="pure-input-1" placeholder="验证码">
+		        <a id="verify-image" href="#">
+		        	<img class="pure-u-1" src="{:U('verifyImage')}" alt="">
+		        </a>
+		    </fieldset>
+
+		    <button type="submit" class="pure-button pure-input-1 pure-button-primary">提交</button>
+		</form>
+	</div>
+	<script>
+		$(function(){
+			var url = "{:U('verifyImage', '', '')}";
+			$("#verify-image").click(function(){
+				$("#verify-image img").prop("src", url + "/" + Math.random());
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post" action="{:U('accountEdit')}">
+            <fieldset>
+                <legend>编辑后台用户</legend>
+
+                <label for="account">帐号</label>
+                <input name="account" type="text" placeholder="帐号" value="{$accountItem.account}" readonly>
+
+                <label for="gid">身份（权限）</label>
+                <label for="gid1" class="pure-radio">
+                    <input name="gid" id="gid1" type="radio" value="1" <eq name="accountItem.gid" value="1">checked</eq>> 用户
+                </label>
+                <label for="gid0" class="pure-radio">
+                    <input name="gid" id="gid0" type="radio" value="0" <eq name="accountItem.gid" value="0">checked</eq>> 管理员
+                </label>
+
+                <input name="uid" type="hidden" value="{$accountItem.uid}">
+                <button type="submit" class="pure-button pure-button-primary">提交</button>
+                <a href="{:U('resetPassword',array('uid'=>$accountItem['uid']))}" class="pure-button">重置密码</a>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<include file="Admin/footer" />

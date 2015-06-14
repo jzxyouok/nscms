@@ -8,7 +8,7 @@
 		<div class="breadCrumb">
 			<p>您现在的位置：<a href="{:U('index')}">网站首页</a> > {$pageItem.pageid|get_catname}</p>
 		</div>
-		<div class="content contentPage">{$pageItem.content}</div>
+		<div class="content contentPage">{$pageItem.content|htmlspecialchars_decode}</div>
 	</div>
 </div>
 

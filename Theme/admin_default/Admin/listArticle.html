@@ -34,7 +34,7 @@
                         <td><img class="admin-list-image" src="{$vo.uploadfileid|get_uploadfile_path}" alt=""></td>
                         <td>{$vo.title}</td>
                         <td>{$vo.updatetime|date="Y/m/d", ###}</td>
-                        <td>{$vo.istop|get_yes_no}</td>
+                        <td>{$vo['istop']?'是':'否'}</td>
                         <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
                     </tr>
                 </volist>

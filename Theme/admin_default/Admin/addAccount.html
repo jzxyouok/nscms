@@ -1,0 +1,37 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post" action="{:U('accountAdd')}">
+            <fieldset>
+                <legend>添加后台用户</legend>
+
+                <label for="account">帐号</label>
+                <input name="account" type="text" placeholder="帐号">
+
+                <label for="password">密码</label>
+                <input name="password" type="password" placeholder="密码">
+
+                <label for="repassword">确认密码</label>
+                <input name="repassword" type="password" placeholder="确认密码">
+
+                <label for="gid">身份（权限）</label>
+                <label for="gid1" class="pure-radio">
+                    <input name="gid" id="gid1" type="radio" value="1" checked> 用户
+                </label>
+                <label for="gid0" class="pure-radio">
+                    <input name="gid" id="gid0" type="radio" value="0"> 管理员
+                </label>
+
+                <button type="submit" class="pure-button pure-button-primary">提交</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<include file="Admin/footer" />

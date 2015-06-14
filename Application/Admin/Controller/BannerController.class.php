@@ -5,7 +5,7 @@ class BannerController extends CommonController {
 
 	// banner列表
     public function listBanner(){
-        $this->bannerList = M('banner')->order('sort desc')->select();
+        $this->bannerList = M('banner')->order('sort desc,id')->select();
         $this->display(MODULE_NAME.'/listBanner');
     }
 

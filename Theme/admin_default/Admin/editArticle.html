@@ -39,7 +39,7 @@
 
                 <label for="content">内容</label>
 
-                <textarea name="content" id="kindeditor" cols="30" rows="10">{$articleItem.content}</textarea>
+                <textarea name="content" id="kindeditor" cols="30" rows="10">{$articleDataItem.content}</textarea>
                 
                 <input name="id" type="hidden" value="{$categoryItem.id}">
                 <button type="submit" class="pure-button pure-button-primary">提交</button>
@@ -57,6 +57,7 @@
                     allowFileManager : false,
                     resizeType : 1,
                     items : [
+                        'source','|',
                         'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
                         'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
                         'insertunorderedlist', '|', 'emoticons', 'image', 'link']

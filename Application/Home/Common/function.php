@@ -16,11 +16,20 @@ function get_banner_list(){
  * @param  integer $pageRows 每页数量
  * @return array         文章列表二维数组
  */
-function get_article_list($catid, $p = 1, $pageRows = 0){
+function get_article_list($catid, $pageRows, $p = 1){
 	$articleModel = M('article');
-	if($pageRows == 0)
-		$pageRows = $articleModel->where(array('pid'=>$catid))->count();
-	return M('article')->where(array('pid'=>$catid))->order('istop desc,sort desc')->page($p, $pageRows)->select();
+
+	return M('article')->where(array('pid'=>$catid,'isnav'=>1))->order('istop desc,sort desc')->page($p, $pageRows)->select();
+}
+
+function get_list_page_show($catid, $pageRows){
+	$articleModel = M('article');
+	$count = $articleModel->where(array('pid' => $catid))->count();
+	$pageInstance = new \Think\Page($count, $pageRows);
+	foreach (C('PAGE_CONFIG') as $key => $value) {
+		$pageInstance->setConfig($key,$value);
+	}
+	return $pageInstance->show();
 }
 
 /**
@@ -30,4 +39,25 @@ function get_article_list($catid, $p = 1, $pageRows = 0){
  */
 function get_piece($id){
 	return M('piece')->find($id);
+}
+
+function generate_category_url($catid){
+	$categoryType = get_category_type_no($catid);
+	switch ($categoryType) {
+		case 0:
+			return get_custom_link_url($catid);
+			break;
+
+		case 1:
+			return U('Index/showPage', array('id' => $catid));
+			break;
+		
+		case 2:
+			return U('Index/listArticle', array('catid' => $catid));
+			break;
+	}
+}
+
+function get_custom_link_url($linkid){
+	return M('custom_link')->where(array('linkid'=>$linkid))->getField('href');
 }

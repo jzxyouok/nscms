@@ -4,3 +4,10 @@
 .cms-input-order{ width:2.5em; }
 
 .admin-list-image{ height: 5em; }
+
+.admin-login{
+	margin-top: 6.25em;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 15em;
+}

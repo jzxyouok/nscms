@@ -20,9 +20,9 @@ class PageController extends CommonController {
 
     // 编辑单页内容（post提交处理）
     public function pageEdit(){
-        // $pageItem['pageid'] = I('post.pageid');
-        // $pageItem['content'] = I('post.content');
-        $affectedRows = M('page')->save(I('post.'));
+        $pageModel = M('page');
+        $pageModel->create();
+        $affectedRows = $pageModel->save();
         if($affectedRows)
             $this->success(L('_OPERATION_SUCCESS_'));
     }

@@ -4,11 +4,18 @@
 		<!-- 一级栏目 -->
 		<php>$listCat1 = get_sub_category(0);</php>
         <volist name="listCat1" id="vo">
-        	<li><a href="{$vo.id}">{$vo.catname}<span></span></a></li>
+        	<li>
+        		<php>$listCat2 = get_sub_category($vo['id']);</php>
+        		<if condition="has_sub_category($vo['id'])">
+                    <a href="{$listCat2[0][id]|generate_category_url}">{$vo.catname}<span></span></a>
+                <else />
+                	<a href="{$vo.id|generate_category_url}">{$vo.catname}<span></span></a>
+                </if>
+        	</li>
         </volist>
 	</ul>
 	<div class="sidebarT"><span>联系我们</span></div>
 	<!-- 碎片调用 -->
 	<php>$pieceItem3 = get_piece(3);</php>
-	<div class="sidebarW">{$pieceItem3.content}</div>
+	<div class="sidebarW">{$pieceItem3.content|htmlspecialchars_decode}</div>
 </div>

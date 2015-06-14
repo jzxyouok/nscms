@@ -15,10 +15,6 @@ class CategoryController extends CommonController {
 
     //添加栏目（post处理，插入数据库）
     public function categoryAdd(){
-        //判断父级栏目所属层级，栏目最多三层
-    	if(get_category_level(I('post.pid'))>2){
-    		$this->error(L('CATEGORY_LEVEL_ERROR'));
-    	}
         //插入数据库
 		$categoryModel = M('category');
 		if($categoryModel->create()){
@@ -100,10 +96,6 @@ class CategoryController extends CommonController {
 
     //编辑栏目提交处理（更新数据库）
     public function categoryEdit(){
-        //判断父级栏目所属层级，栏目最多三层
-        if(get_category_level(I('post.pid'))>2){
-            $this->error(L('CATEGORY_LEVEL_ERROR'));
-        }
         //判断父级栏目是不是自己本身
         if(I('post.pid') == I('post.id')){
             $this->error(L('PARENT_CATEGORY_IS_SELF_ERROR'));

@@ -7,9 +7,13 @@
 
         <div class="content">
             <h2 class="content-subhead">碎片管理</h2>
-            <a class="pure-button" href="{:U('addPiece')}">新增</a>
+
+            <eq name="Think.session.uid|get_gid" value="0">
+                <a class="pure-button" href="{:U('addPiece')}">新增</a>
+                <a id="deleteButton" class="pure-button" href="{:U('delete',array('table'=>'piece'))}">删除</a>
+            </eq>
+            
             <a id="editButton" class="pure-button" href="{:U('editPiece','','')}">编辑</a>
-            <a id="deleteButton" class="pure-button" href="{:U('delete',array('table'=>'piece'))}">删除</a>
             <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
             <h2></h2>
 

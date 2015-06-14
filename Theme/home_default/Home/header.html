@@ -7,35 +7,37 @@
 	<load href="{:get_tpl_path()}/css/style.css" />
 	<load href="__PUBLIC__/jquery-1.11.3.min.js" />
 	<load href="{:get_tpl_path()}/js/index.js" />
+	<load href="__PUBLIC__/pure_css/buttons-min.css" />
 </head>
 <body>
 <div class="headerWarp">
 	<div class="header">
 		<h1 class="logo">
-			<p><a href="#"><img src="{:get_tpl_path()}/images/logo.png" width="215" height="62"  alt=""/></a></p>
+			<p><a href="{:U('index')}"><img src="{:get_tpl_path()}/images/logo.png" width="215" height="62"  alt=""/></a></p>
 		</h1>
 		<ul class="nav">
 			<li>
-				<h2><a href="index.html">网站首页</a></h2>
+				<h2><a href="{:U('index')}">网站首页</a></h2>
 			</li>
 			<!-- 一级栏目 -->
 			<php>$listCat1 = get_sub_category(0);</php>
             <volist name="listCat1" id="vo">
             	<li>
 					<h2>
+						<php>$listCat2 = get_sub_category($vo['id']);</php>
 						<if condition="has_sub_category($vo['id'])">
-                            <a href="javascript:void(0)">{$vo.catname}</a>
+                            <a href="{$listCat2[0][id]|generate_category_url}">{$vo.catname}</a>
                         <else />
-                            <a href="{$vo.id}">{$vo.catname}</a>
+                            <a href="{$vo.id|generate_category_url}">{$vo.catname}</a>
                         </if>
 					</h2>
 					<!-- 二级栏目 -->
-					<php>$listCat2 = get_sub_category($vo['id']);</php>
+					
 					<empty name="listCat2">
 					<else />
 						<p>
 							<volist name="listCat2" id="vo2">
-								<a href="{$vo2.id}">{$vo2.catname}</a>
+								<a href="{$vo2.id|generate_category_url}">{$vo2.catname}</a>
 	                    	</volist>
 						</p>
 					</empty>

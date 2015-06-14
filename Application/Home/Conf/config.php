@@ -6,7 +6,7 @@ return array(
     'VIEW_PATH' => './Theme/',
 
     // 每页显示数量
-    'PAGE_ROWS' => 2,
+    'PAGE_ROWS' => 7,
 
     // 实例化Page类参数
     'PAGE_CONFIG' => array(

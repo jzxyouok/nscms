@@ -1,0 +1,42 @@
+<include file="Home/header" />
+
+<div class="Nmain">
+
+	<include file="Home/left" />
+
+	<div class="content">
+		<div class="breadCrumb">
+			<p>您现在的位置：<a href="{:U('index')}">网站首页</a> > 在线留言</p>
+		</div>
+		<div class="content">
+			<form class="contentMessage" method="post" action="{:U('messageSend')}">
+				<div>
+					<label>姓名：</label>
+					<input name="name" type="text">
+				</div>
+				<div>
+					<label>联系方式：</label>
+					<input name="contact" type="text">
+				</div>
+				<div>
+					<label>留言内容：</label>
+					<textarea name="content"></textarea>
+				</div>
+				<div>
+					<label></label>
+					<button type="submit">提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	// 加载分页按钮样式
+	$("#page .prev").addClass("pure-button");
+	$("#page .num").addClass("pure-button");
+	$("#page .next").addClass("pure-button");
+	$("#page .current").addClass("pure-button pure-button-primary");
+</script>
+
+<include file="Home/footer" />

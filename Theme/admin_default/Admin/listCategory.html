@@ -7,9 +7,13 @@
 
         <div class="content">
             <h2 class="content-subhead">栏目管理</h2>
-            <a class="pure-button" href="{:U('addCategory')}">新增</a>
-            <a id="editButton" class="pure-button" href="{:U('editCategory','','')}">编辑</a>
-            <a id="deleteButton" class="pure-button" href="{:U('deleteCategory')}">删除</a>
+
+            <eq name="Think.session.uid|get_gid" value="0">
+                <a class="pure-button" href="{:U('addCategory')}">新增</a>
+                <a id="editButton" class="pure-button" href="{:U('editCategory','','')}">编辑</a>
+                <a id="deleteButton" class="pure-button" href="{:U('deleteCategory')}">删除</a>
+            </eq>
+            
             <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
             <h2></h2>
 
@@ -19,7 +23,6 @@
                         <th><input id="checkAllIds" type="checkbox"></th>
                         <th>栏目名称</th>
                         <th>栏目类型</th>
-                        <!-- <th>父级栏目</th> -->
                         <th>导航显示</th>
                         <th>
                             <a id="sortButton" class="pure-button pure-button-primary" href="{:U('sort',array('table'=>'category'))}">排序</a>
@@ -50,9 +53,14 @@
                                     </switch>
                                 </if>
                             </td>
-                            <td>{$vo.type|get_category_type_name}</td>
-                            <!-- <td>{$vo.pid|get_catname}</td> -->
-                            <td> {$vo.isnav|get_yes_no} </td>
+                            <td>
+                                <switch name="vo.type">
+                                    <case value="0">自定义</case>
+                                    <case value="1">单页</case>
+                                    <case value="2">文章/图片</case>
+                                </switch>
+                            </td>
+                            <td>{$vo['isnav']?'是':'否'}</td>
                             <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
                         </tr>
                         <!-- 二级栏目 -->
@@ -77,9 +85,14 @@
                                         </switch>
                                     </if>
                                 </td>
-                                <td>{$vo2.type|get_category_type_name}</td>
-                                <!-- <td>{$vo2.pid|get_catname}</td> -->
-                                <td> {$vo2.isnav|get_yes_no} </td>
+                                <td>
+                                    <switch name="vo2.type">
+                                        <case value="0">自定义</case>
+                                        <case value="1">单页</case>
+                                        <case value="2">文章/图片</case>
+                                    </switch>
+                                </td>
+                                <td>{$vo2['isnav']?'是':'否'}</td>
                                 <td><input class="cms-input-order" type="text" value="{$vo2.sort}"></td>
                             </tr>
                             <!-- 三级栏目 -->
@@ -100,9 +113,14 @@
                                             </case>
                                         </switch>
                                     </td>
-                                    <td>{$vo3.type|get_category_type_name}</td>
-                                    <!-- <td>{$vo3.pid|get_catname}</td> -->
-                                    <td> {$vo3.isnav|get_yes_no} </td>
+                                    <td>
+                                        <switch name="vo3.type">
+                                            <case value="0">自定义</case>
+                                            <case value="1">单页</case>
+                                            <case value="2">文章/图片</case>
+                                        </switch>
+                                    </td>
+                                    <td>{$vo3['isnav']?'是':'否'}</td>
                                     <td><input class="cms-input-order" type="text" value="{$vo3.sort}"></td>
                                 </tr>                        
                             </volist>

@@ -1,0 +1,38 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead">后台用户管理</h2>
+        <a class="pure-button" href="{:U('addAccount')}">新增</a>
+        <a id="editButton" class="pure-button" href="{:U('editAccount','','')}">编辑</a>
+        <a id="deleteButton" class="pure-button" href="{:U('delete',array('table'=>'admin'))}">删除</a>
+        <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
+        <h2></h2>
+
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th><input id="checkAllIds" type="checkbox"></th>
+                    <th>帐号</th>
+                    <th>身份（权限）</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <volist name="accountList" id="vo">
+                    <tr>
+                        <td><input class="ids" type="checkbox" value="{$vo.uid}"></td>
+                        <td>{$vo.account}</td>
+                        <td>{$vo['gid']?'用户':'管理员'}</td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>            
+    </div>
+</div>
+
+<include file="Admin/footer" />

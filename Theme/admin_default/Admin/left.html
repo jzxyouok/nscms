@@ -6,14 +6,43 @@
 
 <div id="menu">
     <div class="pure-menu">
-        <a class="pure-menu-heading" href="{:U('Public/index')}">纳森CMS后台</a>
+        <a class="pure-menu-heading" href="{:U('Common/index')}">纳森CMS后台</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="{:U('Category/listCategory')}" class="pure-menu-link">栏目管理</a></li>
-            <li class="pure-menu-item"><a href="{:U('Banner/listBanner')}" class="pure-menu-link">banner管理</a></li>
-            <li class="pure-menu-item"><a href="{:U('Piece/listPiece')}" class="pure-menu-link">碎片管理</a></li>
-            <li class="pure-menu-item"><a href="{:U('Message/listMessage')}" class="pure-menu-link">留言管理</a></li>
-            <li class="pure-menu-item" class="menu-item-divided pure-menu-selected"><a href="{:U('test')}" class="pure-menu-link">测试</a></li>
+
+            <li class="pure-menu-item menu-item-divided">
+                <a href="javascript:void(0)" class="pure-menu-link">你好，{$Think.session.uid|get_account}</a>
+            </li>
+
+            <eq name="Think.session.uid|get_gid" value="0">
+                <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Account'>pure-menu-selected</eq>">
+                    <a href="{:U('Account/listAccount')}" class="pure-menu-link">后台用户管理</a>
+                </li>
+            </eq>
+
+            <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Category'>pure-menu-selected</eq>">
+                <a href="{:U('Category/listCategory')}" class="pure-menu-link">栏目管理</a>
+            </li>
+            
+            <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Banner'>pure-menu-selected</eq>">
+                <a href="{:U('Banner/listBanner')}" class="pure-menu-link">Banner图</a>
+            </li>
+
+            <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Piece'>pure-menu-selected</eq>">
+                <a href="{:U('Piece/listPiece')}" class="pure-menu-link">碎片管理</a>
+            </li>
+
+            <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Message'>pure-menu-selected</eq>">
+                <a href="{:U('Message/listMessage')}" class="pure-menu-link">留言管理</a>
+            </li>
+
+            <li class="pure-menu-item menu-item-divided <eq name='Think.const.ACTION_NAME' value='changePassword'>pure-menu-selected</eq>">
+                <a href="{:U('Account/changePassword')}" class="pure-menu-link">修改密码</a>
+            </li>
+
+            <li class="pure-menu-item menu-item-divided">
+                <a href="{:U('Common/signOut')}" class="pure-menu-link">退出登陆</a>
+            </li>
         </ul>
     </div>
 </div>

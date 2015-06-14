@@ -140,8 +140,11 @@ appears on the left side of the page.
     This styles the selected menu item `<li>`.
     */
 
-#menu .pure-menu-selected,
+/*#menu .pure-menu-selected,
 #menu .pure-menu-heading {
+    background: #1f8dd6;
+}*/
+#menu .pure-menu-selected{
     background: #1f8dd6;
 }
 

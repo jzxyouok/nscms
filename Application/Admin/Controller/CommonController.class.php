@@ -4,9 +4,19 @@ use Think\Controller;
 class CommonController extends Controller {
 
 	public function _initialize(){
-        //定义后台模板目录
-		define('TPL_PATH',__ROOT__.'/'.MODULE_PATH.'View/'.MODULE_NAME);
+        // 验证登陆
+        if(!session('?uid'))
+            $this->error(L('PLEASE_LOGIN'), U('Public/login'));
 	}
+
+    public function index(){
+        $this->display(MODULE_NAME.'/index');
+    }
+
+    public function signOut(){
+        session('uid', null);
+        $this->success(L('_OPERATION_SUCCESS_'), U('Public/login'));
+    }
 
 	//ajax执行后的信息提示
     public function showMsg(){
@@ -84,6 +94,6 @@ class CommonController extends Controller {
     }
 
     public function test(){
-        echo get_tpl_path();
+        // echo get_account(5);
     }
 }
