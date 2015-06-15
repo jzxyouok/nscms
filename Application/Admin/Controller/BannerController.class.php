@@ -46,7 +46,7 @@ class BannerController extends CommonController {
                 if(true == $affectedRows){
                     $this->success(L('_OPERATION_SUCCESS_'));
                 }else{
-                    $this->error(L('_OPERATION_FAIL_'));
+                    $this->error(L('NOTHING_CHANGED'));
                 }
             }
         }

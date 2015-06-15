@@ -10,10 +10,26 @@ class ConfigController extends CommonController {
 	public function setSEO(){
 		if(IS_POST){
 			$seoConfigData = I('post.');
+			$count = 0;
+			$success = 0;
 			foreach ($seoConfigData as $name => $value) {
-				$affectRows = set_config($name, $value);
+				if($value != get_config($name)){
+					$count++;
+					$affectRows = set_config($name, $value);
+					if($affectRows){
+						$success++;
+					}
+				}
 			}
-			$this->success(L('_OPERATION_SUCCESS_'));
+			if($success == $count){
+				if($count == 0){
+					$this->error(L('NOTHING_CHANGED'));
+				}else{
+					$this->success(L('_OPERATION_SUCCESS_'));
+				}
+			}else{
+				$this->error(L('_OPERATION_FAIL_'));
+			}
 		}
 	}
 }

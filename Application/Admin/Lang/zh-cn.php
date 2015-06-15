@@ -29,4 +29,6 @@ return array(
      'PLEASE_LOGIN_AGAIN' => '，先注销再重新登陆下～',
 
      'PASSWORD_NOT_CHANGE' => '原密码和新密码一样，少年你逗我？',
+
+     'NOTHING_CHANGED' => '啥都没改你提交个毛线？',
 );

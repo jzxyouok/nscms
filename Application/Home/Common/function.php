@@ -61,3 +61,12 @@ function generate_category_url($catid){
 function get_custom_link_url($linkid){
 	return M('custom_link')->where(array('linkid'=>$linkid))->getField('href');
 }
+
+/**
+ * 获取子栏目
+ * @param int $pid 父级栏目ID
+ * @return array 子栏目数组
+ */
+function get_sub_nav($pid = 0){
+	return M('category')->where(array('pid'=>$pid,'isnav'=>1))->order('sort desc')->select();
+}

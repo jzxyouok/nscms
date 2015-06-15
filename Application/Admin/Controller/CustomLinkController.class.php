@@ -24,6 +24,8 @@ class CustomLinkController extends CommonController {
         $affectedRows = M('custom_link')->save($post);
         if(true == $affectedRows){
             $this->success(L('_OPERATION_SUCCESS_'));
+        }else{
+            $this->error(L('NOTHING_CHANGED'));
         }
     }
 }

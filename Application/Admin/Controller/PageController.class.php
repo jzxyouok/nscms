@@ -25,6 +25,8 @@ class PageController extends CommonController {
         $affectedRows = $pageModel->save();
         if(true == $affectedRows){
             $this->success(L('_OPERATION_SUCCESS_'));
+        }else{
+            $this->success(L('NOTHING_CHANGED'));
         }
     }
 }

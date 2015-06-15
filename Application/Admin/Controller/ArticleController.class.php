@@ -30,17 +30,19 @@ class ArticleController extends CommonController {
 			$articleModel->create();
 			$articleModel->updatetime = time();
 			$insertId = $articleModel->add();
-			if(true == $insertId)
+			if(true == $insertId){
 				$content = I('post.content');
 				$articleData = array(
 					'articleid' => $insertId,
 					'content' => $content,
 				);
 				$insertDataId = M('article_data')->add($articleData);
-				if(true == $insertDataId)
+				if(true == $insertDataId){
 					$this->success(L('_OPERATION_SUCCESS_'));
-			else
+				}
+			}else{
 				$this->error(L('_OPERATION_FAIL_'));
+			}
 		}
 	}
 
@@ -54,20 +56,27 @@ class ArticleController extends CommonController {
 	public function articleEdit(){
 		if(IS_POST){
 			$articleModel = M('article');
+
+			$post = I('post.');
+			$articleData = array(
+				'articleid' => $post['id'],
+				'content' => $post['content'],
+			);
+			$affecteDataRows = M('article_data')->save($articleData);
+
 			$articleModel->create();
-			$articleModel->updatetime = time();
 			$affectedRows = $articleModel->save();
-			if(true == $affectedRows)
-				$post = I('post.');
-				$articleData = array(
-					'articleid' => $post['id'],
-					'content' => $post['content'],
-				);
-				$affecteDataRows = M('article_data')->save($articleData);
-				if(true == $affecteDataRows)
+
+			if(true == $affecteDataRows || true == $affectedRows){
+				$affectedRows = $articleModel->where(array('id'=>$post['id']))->setField('updatetime', time());
+				if(true == $affectedRows){
 					$this->success(L('_OPERATION_SUCCESS_'));
-			else
-				$this->error(L('_OPERATION_FAIL_'));
+				}else{
+					$this->error(L('_OPERATION_FAIL_'));
+				}
+			}else{
+				$this->error(L('NOTHING_CHANGED'));
+			}
 		}
 	}
 }

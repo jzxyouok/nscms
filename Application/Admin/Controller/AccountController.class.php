@@ -44,7 +44,7 @@ class AccountController extends CommonController {
 			if(true == $affectRows){
 				$this->success(L('_OPERATION_SUCCESS_'));
 			}else{
-				$this->error(L('_OPERATION_FAIL_'));
+				$this->error(L('NOTHING_CHANGED'));
 			}
 		}
 	}

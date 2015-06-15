@@ -22,11 +22,11 @@
 				<h2><a href="{:U('index')}">网站首页</a></h2>
 			</li>
 			<!-- 一级栏目 -->
-			<php>$listCat1 = get_sub_category(0);</php>
+			<php>$listCat1 = get_sub_nav(0);</php>
             <volist name="listCat1" id="vo">
             	<li>
 					<h2>
-						<php>$listCat2 = get_sub_category($vo['id']);</php>
+						<php>$listCat2 = get_sub_nav($vo['id']);</php>
 						<if condition="has_sub_category($vo['id'])">
                             <a href="{$listCat2[0][id]|generate_category_url}">{$vo.catname}</a>
                         <else />
@@ -34,7 +34,6 @@
                         </if>
 					</h2>
 					<!-- 二级栏目 -->
-					
 					<empty name="listCat2">
 					<else />
 						<p>
@@ -45,7 +44,6 @@
 					</empty>
 				</li>
             </volist>
-			
 		</ul>
 	</div>
 </div>

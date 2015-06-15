@@ -3,6 +3,13 @@ namespace Admin\Controller;
 use Think\Controller;
 class PublicController extends Controller {
 
+	public function _initialize(){
+        // 验证安装
+        if(true != get_config('installed')){
+            $this->redirect('Install/Install/index');
+        }
+	}
+
 	public function login(){
 		if(true == session('?uid')){
 			$this->redirect('Common/index');

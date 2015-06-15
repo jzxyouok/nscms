@@ -34,9 +34,11 @@ class PieceController extends CommonController {
 		if(IS_POST){
 			$pieceModel = M('piece');
 			if(true == $pieceModel->create()){
-				$insertId = $pieceModel->save();
-				if(true == $insertId){
+				$affectRows = $pieceModel->save();
+				if(true == $affectRows){
 					$this->success(L('_OPERATION_SUCCESS_'));
+				}else{
+					$this->error(L('NOTHING_CHANGED'));
 				}
 			}
 		}

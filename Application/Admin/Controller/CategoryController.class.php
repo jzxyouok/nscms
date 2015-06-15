@@ -111,6 +111,8 @@ class CategoryController extends CommonController {
             $result = $categoryModel->save(); // 写入数据到数据库 
             if(true == $result){
                 $this->success(L('_OPERATION_SUCCESS_'), U('listCategory'));
+            }else{
+                $this->error(L('NOTHING_CHANGED'));
             }
         }
     }

@@ -23,9 +23,9 @@
                         <th><input id="checkAllIds" type="checkbox"></th>
                         <th>ID</th>
                         <th>标题</th>
-                        <th>
+                        <!-- <th>
                             <a id="sortButton" class="pure-button pure-button-primary" href="{:U('sort',array('table'=>'piece'))}">排序</a>
-                        </th>
+                        </th> -->
                     </tr>
                 </thead>
 
@@ -35,7 +35,7 @@
                             <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
                             <td>{$vo.id}</td>
                             <td>{$vo.title}</td>
-                            <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
+                            <!-- <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td> -->
                         </tr>
                     </volist>
                 </tbody>
