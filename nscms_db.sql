@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-06-14 20:13:34
+-- Generation Time: 2015-06-15 14:51:13
 -- 服务器版本： 5.5.43-0+deb8u1
 -- PHP Version: 5.6.7-1
 
@@ -17,16 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `cms_db`
+-- Database: `nscms_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_admin`
+-- 表的结构 `nscms_admin`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_admin` (
+CREATE TABLE IF NOT EXISTS `nscms_admin` (
 `uid` int(10) unsigned NOT NULL COMMENT '用户ID',
   `gid` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '用户组ID，0管理组，1用户组',
   `account` varchar(255) NOT NULL COMMENT '管理员账户',
@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `cms_admin` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_article`
+-- 表的结构 `nscms_article`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_article` (
+CREATE TABLE IF NOT EXISTS `nscms_article` (
 `id` int(10) unsigned NOT NULL,
   `pid` int(10) unsigned NOT NULL COMMENT '父级ID（栏目ID）',
   `title` varchar(255) NOT NULL COMMENT '标题',
@@ -53,10 +53,10 @@ CREATE TABLE IF NOT EXISTS `cms_article` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_article_data`
+-- 表的结构 `nscms_article_data`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_article_data` (
+CREATE TABLE IF NOT EXISTS `nscms_article_data` (
   `articleid` int(10) unsigned NOT NULL COMMENT '文章ID',
   `content` text NOT NULL COMMENT '文章内容'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -64,10 +64,10 @@ CREATE TABLE IF NOT EXISTS `cms_article_data` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_banner`
+-- 表的结构 `nscms_banner`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_banner` (
+CREATE TABLE IF NOT EXISTS `nscms_banner` (
 `id` int(10) unsigned NOT NULL,
   `uploadfileid` int(10) unsigned DEFAULT NULL COMMENT 'banner图附件ID',
   `href` varchar(255) DEFAULT NULL COMMENT 'banner图链接',
@@ -77,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `cms_banner` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_category`
+-- 表的结构 `nscms_category`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_category` (
+CREATE TABLE IF NOT EXISTS `nscms_category` (
 `id` int(10) unsigned NOT NULL,
   `catname` varchar(255) NOT NULL COMMENT '栏目名称',
   `pid` int(10) unsigned NOT NULL COMMENT '父级ID',
@@ -93,10 +93,21 @@ CREATE TABLE IF NOT EXISTS `cms_category` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_custom_link`
+-- 表的结构 `nscms_config`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_custom_link` (
+CREATE TABLE IF NOT EXISTS `nscms_config` (
+  `name` varchar(255) NOT NULL COMMENT '配置项名称',
+  `value` varchar(255) DEFAULT NULL COMMENT '配置项内容'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='配置项表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `nscms_custom_link`
+--
+
+CREATE TABLE IF NOT EXISTS `nscms_custom_link` (
   `linkid` int(10) unsigned NOT NULL COMMENT '导航栏目自定义链接ID',
   `href` varchar(255) DEFAULT NULL COMMENT '自定义链接内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航自定义链接表';
@@ -104,10 +115,10 @@ CREATE TABLE IF NOT EXISTS `cms_custom_link` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_message`
+-- 表的结构 `nscms_message`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_message` (
+CREATE TABLE IF NOT EXISTS `nscms_message` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL COMMENT '姓名',
   `contact` varchar(255) NOT NULL COMMENT '联系方式',
@@ -119,10 +130,10 @@ CREATE TABLE IF NOT EXISTS `cms_message` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_page`
+-- 表的结构 `nscms_page`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_page` (
+CREATE TABLE IF NOT EXISTS `nscms_page` (
   `pageid` int(10) unsigned NOT NULL COMMENT '导航栏目单页ID',
   `content` text COMMENT '单页内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='单页内容表';
@@ -130,10 +141,10 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_piece`
+-- 表的结构 `nscms_piece`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_piece` (
+CREATE TABLE IF NOT EXISTS `nscms_piece` (
 `id` int(10) unsigned NOT NULL,
   `title` varchar(255) NOT NULL COMMENT '标题',
   `content` text NOT NULL COMMENT '内容',
@@ -143,10 +154,10 @@ CREATE TABLE IF NOT EXISTS `cms_piece` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_uploads`
+-- 表的结构 `nscms_uploads`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_uploads` (
+CREATE TABLE IF NOT EXISTS `nscms_uploads` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL COMMENT '上传文件的原始名称',
   `type` varchar(255) NOT NULL COMMENT '上传文件的MIME类型',
@@ -163,63 +174,69 @@ CREATE TABLE IF NOT EXISTS `cms_uploads` (
 --
 
 --
--- Indexes for table `cms_admin`
+-- Indexes for table `nscms_admin`
 --
-ALTER TABLE `cms_admin`
+ALTER TABLE `nscms_admin`
  ADD PRIMARY KEY (`uid`), ADD UNIQUE KEY `account` (`account`);
 
 --
--- Indexes for table `cms_article`
+-- Indexes for table `nscms_article`
 --
-ALTER TABLE `cms_article`
+ALTER TABLE `nscms_article`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cms_article_data`
+-- Indexes for table `nscms_article_data`
 --
-ALTER TABLE `cms_article_data`
+ALTER TABLE `nscms_article_data`
  ADD PRIMARY KEY (`articleid`);
 
 --
--- Indexes for table `cms_banner`
+-- Indexes for table `nscms_banner`
 --
-ALTER TABLE `cms_banner`
+ALTER TABLE `nscms_banner`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cms_category`
+-- Indexes for table `nscms_category`
 --
-ALTER TABLE `cms_category`
+ALTER TABLE `nscms_category`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cms_custom_link`
+-- Indexes for table `nscms_config`
 --
-ALTER TABLE `cms_custom_link`
+ALTER TABLE `nscms_config`
+ ADD PRIMARY KEY (`name`), ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `nscms_custom_link`
+--
+ALTER TABLE `nscms_custom_link`
  ADD PRIMARY KEY (`linkid`);
 
 --
--- Indexes for table `cms_message`
+-- Indexes for table `nscms_message`
 --
-ALTER TABLE `cms_message`
+ALTER TABLE `nscms_message`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cms_page`
+-- Indexes for table `nscms_page`
 --
-ALTER TABLE `cms_page`
+ALTER TABLE `nscms_page`
  ADD PRIMARY KEY (`pageid`);
 
 --
--- Indexes for table `cms_piece`
+-- Indexes for table `nscms_piece`
 --
-ALTER TABLE `cms_piece`
+ALTER TABLE `nscms_piece`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cms_uploads`
+-- Indexes for table `nscms_uploads`
 --
-ALTER TABLE `cms_uploads`
+ALTER TABLE `nscms_uploads`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -227,39 +244,39 @@ ALTER TABLE `cms_uploads`
 --
 
 --
--- AUTO_INCREMENT for table `cms_admin`
+-- AUTO_INCREMENT for table `nscms_admin`
 --
-ALTER TABLE `cms_admin`
+ALTER TABLE `nscms_admin`
 MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `cms_article`
+-- AUTO_INCREMENT for table `nscms_article`
 --
-ALTER TABLE `cms_article`
+ALTER TABLE `nscms_article`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `cms_banner`
+-- AUTO_INCREMENT for table `nscms_banner`
 --
-ALTER TABLE `cms_banner`
+ALTER TABLE `nscms_banner`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `cms_category`
+-- AUTO_INCREMENT for table `nscms_category`
 --
-ALTER TABLE `cms_category`
+ALTER TABLE `nscms_category`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `cms_message`
+-- AUTO_INCREMENT for table `nscms_message`
 --
-ALTER TABLE `cms_message`
+ALTER TABLE `nscms_message`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `cms_piece`
+-- AUTO_INCREMENT for table `nscms_piece`
 --
-ALTER TABLE `cms_piece`
+ALTER TABLE `nscms_piece`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `cms_uploads`
+-- AUTO_INCREMENT for table `nscms_uploads`
 --
-ALTER TABLE `cms_uploads`
+ALTER TABLE `nscms_uploads`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
