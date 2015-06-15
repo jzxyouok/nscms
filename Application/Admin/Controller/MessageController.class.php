@@ -6,7 +6,8 @@ class MessageController extends CommonController {
 	public function listMessage(){
 		$messageModel = M('message');
 
-		$p = empty(I('get.p')) ? 1 : I('get.p');
+		$p = I('get.p');
+		$p = empty($p) ? 1 : $p;
 
 		$this->messageList = $messageModel->order('createtime desc')->page($p, C('PAGE_ROWS'))->select();
 		
@@ -22,9 +23,10 @@ class MessageController extends CommonController {
 
 	public function showMessage(){
 		$messageModel = M('message');
-		$this->messageItem = $messageModel->find(I('get.id'));
+		$id = I('get.id');
+		$this->messageItem = $messageModel->find($id);
 		if($this->messageItem){
-			$affectRows = $messageModel->where(array('id'=>I('get.id')))->setField('isread', 1);
+			$affectRows = $messageModel->where(array('id'=>$id))->setField('isread', 1);
 			if($affectRows)
 				$this->display(MODULE_NAME.'/showMessage');
 		}

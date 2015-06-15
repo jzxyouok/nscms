@@ -12,10 +12,11 @@ class PublicController extends Controller {
 
 	public function signIn(){
 		if(IS_POST){
-			if(check_verify(I('verify'))){
-				$accountItem = M('admin')->where(array('account'=>I('post.account')))->find();
+			$post = I('post.');
+			if(check_verify($post['verify'])){
+				$accountItem = M('admin')->where(array('account'=>$post['account']))->find();
 				if($accountItem){
-					if($accountItem['password'] == md5(I('post.password'))){
+					if($accountItem['password'] == md5($post['password'])){
 						session('uid', $accountItem['uid']);
 						$this->success(L('LOGIN_SUCCESS'), U('Common/index'));
 					}else{

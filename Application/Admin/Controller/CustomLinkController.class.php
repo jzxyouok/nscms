@@ -20,9 +20,8 @@ class CustomLinkController extends CommonController {
 
     // 编辑自定义链接（post提交处理）
     public function customLinkEdit(){
-        // $customLinkItem['linkid'] = I('post.linkid');
-        // $customLinkItem['href'] = I('post.href');
-        $affectedRows = M('custom_link')->save(I('post.'));
+        $post = I('post.');
+        $affectedRows = M('custom_link')->save($post);
         if($affectedRows)
             $this->success(L('_OPERATION_SUCCESS_'));
     }

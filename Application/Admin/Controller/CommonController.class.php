@@ -47,12 +47,13 @@ class CommonController extends Controller {
     // jquery.fileupload上传处理
     public function jqueryFileUpload(){
         $upload = new \Think\Upload(C('IMG_UPLOAD'));// 实例化上传类
-        $upload->savePath = I('post.inputName') . '/';
+        $inputName = I('post.inputName');
+        $upload->savePath = $inputName . '/';
         $info = $upload->upload();
         if(!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
         }else{// 上传成功
-            $insertUploadId = M('uploads')->add($info[I('post.inputName')]);// 将上传成功的文件信息写入uploads表
+            $insertUploadId = M('uploads')->add($info[$inputName]);// 将上传成功的文件信息写入uploads表
             if($insertUploadId){
                 $ajaxReturn['status'] = 1;
                 $ajaxReturn['info'] = L('_OPERATION_SUCCESS_');
@@ -68,7 +69,8 @@ class CommonController extends Controller {
         $sorts = I('post.sorts');
         $ids = I('post.ids');
         //更新排序字段
-        $model = M(I('get.table'));
+        $table = I('get.table');
+        $model = M($table);
         for ($i=0, $success = 0; $i < count($sorts); $i++) {
             $result = $model->where('id='.$ids[$i])->setField('sort', intval($sorts[$i]));
             if($result)
@@ -82,7 +84,8 @@ class CommonController extends Controller {
         //获取ajax提交的ID数组
         $ids = I('post.ids');
         //循环删除
-        $model = M(I('get.table'));
+        $table = I('get.table');
+        $model = M($table);
         $success = 0;
         foreach ($ids as $id) {
             $affectedRows = $model->delete($id); // 从数据库删除记录

@@ -5,12 +5,13 @@ class ArticleController extends CommonController {
 
 	public function listArticle(){
 		$articleModel = M('article');
+		$get = I('get.');
+		$p = $get['p'];
+		$p = empty($p) ? 1 : $p;
 
-		$p = empty(I('get.p')) ? 1 : I('get.p');
-
-		$this->articleList = $articleModel->where(array('pid' => I('get.catid')))->order('istop desc,sort desc,updatetime desc')->page($p, C('PAGE_ROWS'))->select();
+		$this->articleList = $articleModel->where(array('pid' => $get['catid']))->order('istop desc,sort desc,updatetime desc')->page($p, C('PAGE_ROWS'))->select();
 		
-		$count = $articleModel->where(array('pid' => I('get.catid')))->count();
+		$count = $articleModel->where(array('pid' => $get['catid']))->count();
 		$pageInstance = new \Think\Page($count, C('PAGE_ROWS'));
 		foreach (C('PAGE_CONFIG') as $key => $value) {
 			$pageInstance->setConfig($key,$value);
@@ -31,9 +32,10 @@ class ArticleController extends CommonController {
 			$articleModel->updatetime = time();
 			$insertId = $articleModel->add();
 			if($insertId)
+				$content = I('post.content');
 				$articleData = array(
 					'articleid' => $insertId,
-					'content' => I('post.content'),
+					'content' => $content,
 				);
 				$insertDataId = M('article_data')->add($articleData);
 				if($insertDataId)
@@ -44,8 +46,9 @@ class ArticleController extends CommonController {
 	}
 
 	public function editArticle(){
-		$this->articleItem = M('article')->find(I('get.id'));
-		$this->articleDataItem = M('article_data')->find(I('get.id'));
+		$id = I('get.id');
+		$this->articleItem = M('article')->find($id);
+		$this->articleDataItem = M('article_data')->find($id);
 		$this->display(MODULE_NAME.'/editArticle');
 	}
 
@@ -56,9 +59,10 @@ class ArticleController extends CommonController {
 			$articleModel->updatetime = time();
 			$affectedRows = $articleModel->save();
 			if($affectedRows)
+				$post = I('post.');
 				$articleData = array(
-					'articleid' => I('post.id'),
-					'content' => I('post.content'),
+					'articleid' => $post['id'],
+					'content' => $post['content'],
 				);
 				$affecteDataRows = M('article_data')->save($articleData);
 				if($affecteDataRows)

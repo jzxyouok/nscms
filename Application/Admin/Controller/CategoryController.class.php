@@ -20,8 +20,9 @@ class CategoryController extends CommonController {
 		if($categoryModel->create()){
 		    $insertId = $categoryModel->add(); // 写入数据到数据库
             if($insertId){
-                //判断栏目类型，自定义链接和单页需在各自的内容表里插入相同ID的记录
-                switch (I('post.type')) {
+                // 判断栏目类型，自定义链接和单页需在各自的内容表里插入相同ID的记录
+                $type = I('post.type');
+                switch ($type) {
                     case 0: // 自定义链接 custom_link
                         $result = A('CustomLink')->customLinkAdd($insertId);
                         // $result = M('custom_link')->data(array('linkid'=>$insertId))->add();
@@ -96,8 +97,9 @@ class CategoryController extends CommonController {
 
     //编辑栏目提交处理（更新数据库）
     public function categoryEdit(){
-        //判断父级栏目是不是自己本身
-        if(I('post.pid') == I('post.id')){
+        // 判断父级栏目是不是自己本身
+        $post = I('post.');
+        if($post['pid'] == $post['id']){
             $this->error(L('PARENT_CATEGORY_IS_SELF_ERROR'));
         }
         //插入数据库

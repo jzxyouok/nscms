@@ -21,7 +21,8 @@ class IndexController extends Controller {
     }
 
     public function listArticle(){
-    	$tpl = M('category')->where(array('id'=>I('get.catid')))->getField('tpl');
+        $catid = I('get.catid');
+    	$tpl = M('category')->where(array('id'=>$catid))->getField('tpl');
     	if($tpl)
     		$this->display(MODULE_NAME.'/list_'.$tpl);
     	else
@@ -29,8 +30,9 @@ class IndexController extends Controller {
     }
 
     public function showArticle(){
-    	$this->articleItem = M('article')->find(I('get.id'));
-    	$this->articleDataItem = M('article_data')->find(I('get.id'));
+        $id = I('get.id');
+    	$this->articleItem = M('article')->find($id);
+    	$this->articleDataItem = M('article_data')->find($id);
     	$this->display(MODULE_NAME.'/show');
     }
 
