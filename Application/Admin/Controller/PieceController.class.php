@@ -17,8 +17,9 @@ class PieceController extends CommonController {
 			$pieceModel = M('piece');
 			if($pieceModel->create()){
 				$insertId = $pieceModel->add();
-				if($insertId)
+				if($insertId){
 					$this->success(L('_OPERATION_SUCCESS_'));
+				}
 			}
 		}
 	}
@@ -34,8 +35,9 @@ class PieceController extends CommonController {
 			$pieceModel = M('piece');
 			if($pieceModel->create()){
 				$insertId = $pieceModel->save();
-				if($insertId)
+				if($insertId){
 					$this->success(L('_OPERATION_SUCCESS_'));
+				}
 			}
 		}
 	}

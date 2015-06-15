@@ -9,8 +9,9 @@ class CommonController extends Controller {
             $this->redirect('Install/Install/index');
         }
         // 验证登陆
-        if(!session('?uid'))
+        if(!session('?uid')){
             $this->error(L('PLEASE_LOGIN'), U('Public/login'));
+        }
 	}
 
     public function index(){
@@ -25,10 +26,11 @@ class CommonController extends Controller {
 	//ajax执行后的信息提示
     public function showMsg(){
         $ajaxReturn = I('post.');
-        if($ajaxReturn['status'] == 1)
+        if($ajaxReturn['status'] == 1){
             $this->success($ajaxReturn['info'], $ajaxReturn['url']);
-        else
+        }else{
             $this->error($ajaxReturn['info'], $ajaxReturn['url']);
+        }
     }
     
     // kindeditor上传图片处理
@@ -36,7 +38,7 @@ class CommonController extends Controller {
         $upload = new \Think\Upload(C('IMG_UPLOAD'));// 实例化上传类
         $upload->savePath = 'editor/';
         $info = $upload->upload();
-        if(!$info) {// 上传错误提示错误信息
+        if(!$info){// 上传错误提示错误信息
             echo json_encode(array('error' => 1, 'message' => $upload->getError()));
         }else{// 上传成功
             $insertUploadId = M('uploads')->add($info['imgFile']);// 将上传成功的文件信息写入uploads表
@@ -50,7 +52,7 @@ class CommonController extends Controller {
         $inputName = I('post.inputName');
         $upload->savePath = $inputName . '/';
         $info = $upload->upload();
-        if(!$info) {// 上传错误提示错误信息
+        if(!$info){// 上传错误提示错误信息
             $this->error($upload->getError());
         }else{// 上传成功
             $insertUploadId = M('uploads')->add($info[$inputName]);// 将上传成功的文件信息写入uploads表
@@ -73,8 +75,9 @@ class CommonController extends Controller {
         $model = M($table);
         for ($i=0, $success = 0; $i < count($sorts); $i++) {
             $result = $model->where('id='.$ids[$i])->setField('sort', intval($sorts[$i]));
-            if($result)
+            if($result){
                 $success++;
+            }
         }
         $this->success(L('_OPERATION_SUCCESS_'));
     }
@@ -90,14 +93,16 @@ class CommonController extends Controller {
         foreach ($ids as $id) {
             $affectedRows = $model->delete($id); // 从数据库删除记录
 
-            if($affectedRows)
+            if($affectedRows){
                 $success++;
+            }
         }        
         //判断成功数目
-        if($success == count($ids))
+        if($success == count($ids)){
             $this->success(L('_OPERATION_SUCCESS_'));
-        else
+        }else{
             $this->error($model->getError());
+        }
     }
 
     public function test(){

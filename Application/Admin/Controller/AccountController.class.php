@@ -15,16 +15,18 @@ class AccountController extends CommonController {
 	public function accountAdd(){
 		if(IS_POST){
 			$post = I('post.');
-			if($post['password'] != $post['repassword'])
+			if($post['password'] != $post['repassword']){
 				$this->error(L('DIFFERENT_PASSWORD'));
+			}
 			$adminModel = M('admin');
 			$adminModel->create();
 			$adminModel->password = md5($post['password']);
 			$insertId = $adminModel->add();
-			if($insertId)
+			if($insertId){
 				$this->success(L('_OPERATION_SUCCESS_'));
-			else
+			}else{
 				$this->error(L('_OPERATION_FAIL_'));
+			}
 		}
 	}
 
@@ -39,10 +41,11 @@ class AccountController extends CommonController {
 			$adminModel = M('admin');
 			$adminModel->create();
 			$affectRows = $adminModel->save();
-			if($affectRows)
+			if($affectRows){
 				$this->success(L('_OPERATION_SUCCESS_'));
-			else
+			}else{
 				$this->error(L('_OPERATION_FAIL_'));
+			}
 		}
 	}
 
@@ -51,25 +54,33 @@ class AccountController extends CommonController {
         $ids = I('post.ids');
         //判断是否存在当前登陆用户
         foreach ($ids as $id) {
-            if($id == session('uid'))
+            if($id == session('uid')){
             	$this->error(L('DELETE_SELF_ERROR'));
+            }
         }
 	}
 
 	public function resetPassword(){
+		$uid = I('get.uid');
+		$currentUid = session('uid');
+		if($uid == $currentUid){
+			$this->error(L('CAN_NOT_RESET_SELF'));
+		}
 		$this->display(MODULE_NAME.'/'.ACTION_NAME);
 	}
 
 	public function passwordReset(){
 		if(IS_POST){
 			$post = I('post.');
-			if($post['password'] != $post['repassword'])
+			if($post['password'] != $post['repassword']){
 				$this->error(L('DIFFERENT_PASSWORD'));
+			}
 			$affectRows = M('admin')->where(array('uid'=>$post['uid']))->setField('password', md5($post['password']));
-			if($affectRows)
+			if($affectRows){
 				$this->success(L('_OPERATION_SUCCESS_'));
-			else
+			}else{
 				$this->error(L('_OPERATION_FAIL_'));
+			}
 		}
 	}
 
@@ -81,24 +92,32 @@ class AccountController extends CommonController {
 		if(IS_POST){
 			// 判断两次新密码输入
 			$post = I('post.');
-			if($post['newpassword'] != $post['repassword'])
+			if($post['newpassword'] != $post['repassword']){
 				$this->error(L('DIFFERENT_PASSWORD'));
+			}
+			// 判断原密码和新密码是否相同
+			if($post['oldpassword'] == $post['newpassword']){
+				$this->error(L('PASSWORD_NOT_CHANGE'));
+			}
 			// 判断是否修改的是当前登陆用户
-			if($post['uid'] != session('uid'))
+			if($post['uid'] != session('uid')){
 				$this->error(L('DO_NOT_HACK'));
+			}
 
 			$accountItem = M('admin');
 			$oldPassword = $accountItem->where(array('uid'=>$post['uid']))->getField('password');
 			// 判断原密码是否正确
-			if($oldPassword != md5($post['password']))
+			if($oldPassword != md5($post['oldpassword'])){
 				$this->error(L('OLD_PASSWORD_ERROR'));
+			}
 
 			// 修改密码
 			$affectRows = $accountItem->where(array('uid'=>$post['uid']))->setField('password', md5($post['newpassword']));
-			if($affectRows)
-				$this->success(L('_OPERATION_SUCCESS_'));
-			else
+			if($affectRows){
+				$this->success(L('_OPERATION_SUCCESS_').L('PLEASE_LOGIN_AGAIN'), U('Common/signOut'));
+			}else{
 				$this->error(L('_OPERATION_FAIL_'));
+			}
 		}
 	}
 }

@@ -50,8 +50,9 @@ class CategoryController extends CommonController {
         $ids = I('post.ids');
         //判断有没有子栏目
         foreach ($ids as $id) {
-            if(has_sub_category($id))
+            if(has_sub_category($id)){
                 $this->error(L('HAS_SUB_CATEGORY_ERROR'));
+            }
         }
         //循环删除
         $categoryModel = M('category');
@@ -77,15 +78,17 @@ class CategoryController extends CommonController {
                         $result = true;
                         break;
                 }
-                if($result)
+                if($result){
                     $success++;
+                }
             }
         }
         //判断成功数目
-        if($success == count($ids))
+        if($success == count($ids)){
             $this->success(L('_OPERATION_SUCCESS_'),U('listCategory'));
-        else
+        }else{
             $this->error(L('_OPERATION_FAIL_'),U('listCategory'));
+        }
     }
 
     //编辑栏目

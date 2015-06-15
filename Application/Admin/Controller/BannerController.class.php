@@ -16,15 +16,17 @@ class BannerController extends CommonController {
 
     public function bannerAdd(){
         $uploadfileid = I('post.uploadfileid')
-        if(false == $uploadfileid)
+        if(false == $uploadfileid){
             $this->error(L('NO_UPLOAD_FILE'));
+        }
         $bannerModel = M('banner');
         if($bannerModel->create()){
             $insertId = $bannerModel->add();
-            if($insertId)
+            if($insertId){
                 $this->success(L('_OPERATION_SUCCESS_'));
-            else
+            }else{
                 $this->error(L('_OPERATION_FAIL_'));
+            }
         }
     }
 
@@ -41,10 +43,11 @@ class BannerController extends CommonController {
             $bannerModel = M('banner');
             if($bannerModel->create()){
                 $affectedRows = $bannerModel->save();
-                if($affectedRows)
+                if($affectedRows){
                     $this->success(L('_OPERATION_SUCCESS_'));
-                else
+                }else{
                     $this->error(L('_OPERATION_FAIL_'));
+                }
             }
         }
     }
