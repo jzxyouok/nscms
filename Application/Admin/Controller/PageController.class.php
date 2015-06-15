@@ -23,7 +23,7 @@ class PageController extends CommonController {
         $pageModel = M('page');
         $pageModel->create();
         $affectedRows = $pageModel->save();
-        if($affectedRows){
+        if(true == $affectedRows){
             $this->success(L('_OPERATION_SUCCESS_'));
         }
     }

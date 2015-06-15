@@ -22,7 +22,7 @@ class AccountController extends CommonController {
 			$adminModel->create();
 			$adminModel->password = md5($post['password']);
 			$insertId = $adminModel->add();
-			if($insertId){
+			if(true == $insertId){
 				$this->success(L('_OPERATION_SUCCESS_'));
 			}else{
 				$this->error(L('_OPERATION_FAIL_'));
@@ -41,7 +41,7 @@ class AccountController extends CommonController {
 			$adminModel = M('admin');
 			$adminModel->create();
 			$affectRows = $adminModel->save();
-			if($affectRows){
+			if(true == $affectRows){
 				$this->success(L('_OPERATION_SUCCESS_'));
 			}else{
 				$this->error(L('_OPERATION_FAIL_'));
@@ -76,7 +76,7 @@ class AccountController extends CommonController {
 				$this->error(L('DIFFERENT_PASSWORD'));
 			}
 			$affectRows = M('admin')->where(array('uid'=>$post['uid']))->setField('password', md5($post['password']));
-			if($affectRows){
+			if(true == $affectRows){
 				$this->success(L('_OPERATION_SUCCESS_'));
 			}else{
 				$this->error(L('_OPERATION_FAIL_'));
@@ -113,7 +113,7 @@ class AccountController extends CommonController {
 
 			// 修改密码
 			$affectRows = $accountItem->where(array('uid'=>$post['uid']))->setField('password', md5($post['newpassword']));
-			if($affectRows){
+			if(true == $affectRows){
 				$this->success(L('_OPERATION_SUCCESS_').L('PLEASE_LOGIN_AGAIN'), U('Common/signOut'));
 			}else{
 				$this->error(L('_OPERATION_FAIL_'));

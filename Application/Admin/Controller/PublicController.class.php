@@ -4,7 +4,7 @@ use Think\Controller;
 class PublicController extends Controller {
 
 	public function login(){
-		if(session('?uid')){
+		if(true == session('?uid')){
 			$this->redirect('Common/index');
 		}
 		$this->display(MODULE_NAME.'/login');
@@ -13,9 +13,9 @@ class PublicController extends Controller {
 	public function signIn(){
 		if(IS_POST){
 			$post = I('post.');
-			if(check_verify($post['verify'])){
+			if(true == check_verify($post['verify'])){
 				$accountItem = M('admin')->where(array('account'=>$post['account']))->find();
-				if($accountItem){
+				if(true == $accountItem){
 					if($accountItem['password'] == md5($post['password'])){
 						session('uid', $accountItem['uid']);
 						$this->success(L('LOGIN_SUCCESS'), U('Common/index'));

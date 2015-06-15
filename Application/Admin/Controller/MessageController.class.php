@@ -25,9 +25,9 @@ class MessageController extends CommonController {
 		$messageModel = M('message');
 		$id = I('get.id');
 		$this->messageItem = $messageModel->find($id);
-		if($this->messageItem){
+		if(true == $this->messageItem){
 			$affectRows = $messageModel->where(array('id'=>$id))->setField('isread', 1);
-			if($affectRows){
+			if(true == $affectRows){
 				$this->display(MODULE_NAME.'/showMessage');
 			}
 		}

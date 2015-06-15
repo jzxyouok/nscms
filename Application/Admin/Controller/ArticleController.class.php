@@ -30,14 +30,14 @@ class ArticleController extends CommonController {
 			$articleModel->create();
 			$articleModel->updatetime = time();
 			$insertId = $articleModel->add();
-			if($insertId)
+			if(true == $insertId)
 				$content = I('post.content');
 				$articleData = array(
 					'articleid' => $insertId,
 					'content' => $content,
 				);
 				$insertDataId = M('article_data')->add($articleData);
-				if($insertDataId)
+				if(true == $insertDataId)
 					$this->success(L('_OPERATION_SUCCESS_'));
 			else
 				$this->error(L('_OPERATION_FAIL_'));
@@ -57,14 +57,14 @@ class ArticleController extends CommonController {
 			$articleModel->create();
 			$articleModel->updatetime = time();
 			$affectedRows = $articleModel->save();
-			if($affectedRows)
+			if(true == $affectedRows)
 				$post = I('post.');
 				$articleData = array(
 					'articleid' => $post['id'],
 					'content' => $post['content'],
 				);
 				$affecteDataRows = M('article_data')->save($articleData);
-				if($affecteDataRows)
+				if(true == $affecteDataRows)
 					$this->success(L('_OPERATION_SUCCESS_'));
 			else
 				$this->error(L('_OPERATION_FAIL_'));

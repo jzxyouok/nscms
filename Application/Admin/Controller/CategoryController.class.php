@@ -17,9 +17,9 @@ class CategoryController extends CommonController {
     public function categoryAdd(){
         //插入数据库
 		$categoryModel = M('category');
-		if($categoryModel->create()){
+		if(true == $categoryModel->create()){
 		    $insertId = $categoryModel->add(); // 写入数据到数据库
-            if($insertId){
+            if(true == $insertId){
                 // 判断栏目类型，自定义链接和单页需在各自的内容表里插入相同ID的记录
                 $type = I('post.type');
                 switch ($type) {
@@ -37,7 +37,7 @@ class CategoryController extends CommonController {
                         $result = true;
                         break;
                 }
-                if($result){
+                if(true == $result){
                     $this->success(L('_OPERATION_SUCCESS_'));
                 }
             }
@@ -50,7 +50,7 @@ class CategoryController extends CommonController {
         $ids = I('post.ids');
         //判断有没有子栏目
         foreach ($ids as $id) {
-            if(has_sub_category($id)){
+            if(true == has_sub_category($id)){
                 $this->error(L('HAS_SUB_CATEGORY_ERROR'));
             }
         }
@@ -61,7 +61,7 @@ class CategoryController extends CommonController {
             $categoryType = get_category_type_no($id); // 获取栏目类型
             $affectedRows = $categoryModel->delete($id); // 从数据库删除栏目
 
-            if($affectedRows){
+            if(true == $affectedRows){
                 //判断栏目类型，自定义链接和单页需在各自的内容表里删除相同ID的记录
                 switch ($categoryType) {
                     case 0: // 自定义链接 custom_link
@@ -78,7 +78,7 @@ class CategoryController extends CommonController {
                         $result = true;
                         break;
                 }
-                if($result){
+                if(true == $result){
                     $success++;
                 }
             }
@@ -107,9 +107,9 @@ class CategoryController extends CommonController {
         }
         //插入数据库
         $categoryModel = M('category');
-        if($categoryModel->create()){
+        if(true == $categoryModel->create()){
             $result = $categoryModel->save(); // 写入数据到数据库 
-            if($result){
+            if(true == $result){
                 $this->success(L('_OPERATION_SUCCESS_'), U('listCategory'));
             }
         }

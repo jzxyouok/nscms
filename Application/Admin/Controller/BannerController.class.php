@@ -20,9 +20,9 @@ class BannerController extends CommonController {
             $this->error(L('NO_UPLOAD_FILE'));
         }
         $bannerModel = M('banner');
-        if($bannerModel->create()){
+        if(true == $bannerModel->create()){
             $insertId = $bannerModel->add();
-            if($insertId){
+            if(true == $insertId){
                 $this->success(L('_OPERATION_SUCCESS_'));
             }else{
                 $this->error(L('_OPERATION_FAIL_'));
@@ -41,9 +41,9 @@ class BannerController extends CommonController {
     public function bannerEdit(){
         if(IS_POST){
             $bannerModel = M('banner');
-            if($bannerModel->create()){
+            if(true == $bannerModel->create()){
                 $affectedRows = $bannerModel->save();
-                if($affectedRows){
+                if(true == $affectedRows){
                     $this->success(L('_OPERATION_SUCCESS_'));
                 }else{
                     $this->error(L('_OPERATION_FAIL_'));

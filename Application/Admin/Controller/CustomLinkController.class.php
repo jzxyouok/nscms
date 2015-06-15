@@ -22,7 +22,7 @@ class CustomLinkController extends CommonController {
     public function customLinkEdit(){
         $post = I('post.');
         $affectedRows = M('custom_link')->save($post);
-        if($affectedRows){
+        if(true == $affectedRows){
             $this->success(L('_OPERATION_SUCCESS_'));
         }
     }

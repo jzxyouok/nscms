@@ -54,8 +54,8 @@ class IndexController extends Controller {
     }
 
     public function test(){
-        $a = array();
+        $a = 3;
     	$get = $a['p'];
-        echo $get ==false;
+        echo set_config('seo_title','aa');
     }
 }
