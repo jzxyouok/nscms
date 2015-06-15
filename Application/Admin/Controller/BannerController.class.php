@@ -16,7 +16,7 @@ class BannerController extends CommonController {
 
     public function bannerAdd(){
         $uploadfileid = I('post.uploadfileid')
-        if(empty($uploadfileid))
+        if(false == $uploadfileid)
             $this->error(L('NO_UPLOAD_FILE'));
         $bannerModel = M('banner');
         if($bannerModel->create()){

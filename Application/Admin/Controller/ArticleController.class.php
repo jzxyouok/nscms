@@ -6,8 +6,7 @@ class ArticleController extends CommonController {
 	public function listArticle(){
 		$articleModel = M('article');
 		$get = I('get.');
-		$p = $get['p'];
-		$p = empty($p) ? 1 : $p;
+		$p = (false == $get['p']) ? 1 : $get['p'];
 
 		$this->articleList = $articleModel->where(array('pid' => $get['catid']))->order('istop desc,sort desc,updatetime desc')->page($p, C('PAGE_ROWS'))->select();
 		

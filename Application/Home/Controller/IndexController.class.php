@@ -54,7 +54,8 @@ class IndexController extends Controller {
     }
 
     public function test(){
-    	$a = 2 || false;
-    	echo $a;
+        $a = array();
+    	$get = $a['p'];
+        echo $get ==false;
     }
 }

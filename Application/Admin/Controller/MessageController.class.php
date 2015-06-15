@@ -7,7 +7,7 @@ class MessageController extends CommonController {
 		$messageModel = M('message');
 
 		$p = I('get.p');
-		$p = empty($p) ? 1 : $p;
+		$p = (false == $p) ? 1 : $p;
 
 		$this->messageList = $messageModel->order('createtime desc')->page($p, C('PAGE_ROWS'))->select();
 		
