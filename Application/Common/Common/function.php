@@ -76,3 +76,22 @@ function check_verify($code, $id = ''){
     $verify = new \Think\Verify();
     return $verify->check($code, $id);
 }
+
+/**
+ * 从config表获取配置信息
+ * @param  string $name 配置项名称
+ * @return string       配置项值
+ */
+function get_config($name){
+	return M('config')->where(array('name'=>$name))->getField('value');
+}
+
+/**
+ * 更新config表配置信息
+ * @param  string $name 配置项名称
+ * @param  string $value 配置项值
+ * @return integer       影响记录数
+ */
+function set_config($name, $value){
+	return M('config')->where(array('name'=>$name))->setField('value', $value);
+}

@@ -2,7 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>纳森01号模版</title>
+	<title>{:get_config('seo_title')}</title>
+	<meta name="keywords" content="{:get_config('seo_keywords')}" />
+	<meta name="description" content="{:get_config('seo_description')}" />
 
 	<load href="{:get_tpl_path()}/css/style.css" />
 	<load href="__PUBLIC__/jquery-1.11.3.min.js" />

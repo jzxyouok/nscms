@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>纳森科技CMS安装程序</title>
+	<load href="__PUBLIC__/pure_css/pure-min.css" />
+	<style>
+	div, ul{
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	div{
+		margin-top: 10em;
+		max-width: 24em;
+	}
+	ul{
+		max-width: 10em;
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<h2>执行安装前请先确保做了以下步骤</h2>
+		<ul>
+			<li>建立数据库</li>
+			<li>导入sql文件</li>
+			<li>修改数据库配置文件</li>
+		</ul>
+		<a href="{:U('install')}" class="pure-button pure-button-primary">执行安装</a>
+	</div>
+</body>
+</html>

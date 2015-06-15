@@ -15,10 +15,14 @@
             </li>
 
             <eq name="Think.session.uid|get_gid" value="0">
-                <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Account'>pure-menu-selected</eq>">
-                    <a href="{:U('Account/listAccount')}" class="pure-menu-link">后台用户管理</a>
+                <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Account'><neq name='Think.const.ACTION_NAME' value='changePassword'>pure-menu-selected</neq></eq>">
+                    <a href="{:U('Account/listAccount')}" class="pure-menu-link">后台用户</a>
                 </li>
             </eq>
+
+            <li class="pure-menu-item menu-item-divided <eq name='Think.const.ACTION_NAME' value='seoSET'>pure-menu-selected</eq>">
+                <a href="{:U('Config/seoSet')}" class="pure-menu-link">SEO设置</a>
+            </li>
 
             <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Category'>pure-menu-selected</eq>">
                 <a href="{:U('Category/listCategory')}" class="pure-menu-link">栏目管理</a>
@@ -38,6 +42,10 @@
 
             <li class="pure-menu-item menu-item-divided <eq name='Think.const.ACTION_NAME' value='changePassword'>pure-menu-selected</eq>">
                 <a href="{:U('Account/changePassword')}" class="pure-menu-link">修改密码</a>
+            </li>
+
+            <li class="pure-menu-item menu-item-divided">
+                <a target="_blank" href="{:U('Home/Index/index')}" class="pure-menu-link">访问前台</a>
             </li>
 
             <li class="pure-menu-item menu-item-divided">

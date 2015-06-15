@@ -1,0 +1,29 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post" action="{:U('setSEO')}">
+            <fieldset>
+                <legend>SEO设置</legend>
+
+                <label for="seo_title">Title</label>
+                <input name="seo_title" type="text" placeholder="Title" value="{:get_config('seo_title')}">
+
+                <label for="seo_keywords">Keywords</label>
+                <input name="seo_keywords" type="text" placeholder="Keywords" value="{:get_config('seo_keywords')}">
+
+                <label for="seo_description">Description</label>
+                <input name="seo_description" type="text" placeholder="Description" value="{:get_config('seo_description')}">
+                <h2></h2>
+                <button type="submit" class="pure-button pure-button-primary">提交</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<include file="Admin/footer" />

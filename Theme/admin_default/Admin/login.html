@@ -12,8 +12,8 @@
 		<h2>后台登陆</h2>
 		<form class="pure-form" method="post" action="{:U('signIn')}">
 		    <fieldset class="pure-group">
-		        <input name="account" type="text" class="pure-input-1" placeholder="用户名">
-		        <input name="password" type="text" class="pure-input-1" placeholder="密码">
+		        <input id="account" name="account" type="text" class="pure-input-1" placeholder="用户名">
+		        <input name="password" type="password" class="pure-input-1" placeholder="密码">
 		        <input name="verify" type="text" class="pure-input-1" placeholder="验证码">
 		        <a id="verify-image" href="#">
 		        	<img class="pure-u-1" src="{:U('verifyImage')}" alt="">
@@ -30,6 +30,8 @@
 				$("#verify-image img").prop("src", url + "/" + Math.random());
 				return false;
 			});
+
+			$("#account").focus();
 		});
 	</script>
 </body>
