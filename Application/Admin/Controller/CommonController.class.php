@@ -4,6 +4,10 @@ use Think\Controller;
 class CommonController extends Controller {
 
 	public function _initialize(){
+        // 验证安装
+        if(true != get_config('installed')){
+            $this->redirect('Install/Install/index');
+        }
         // 验证登陆
         if(!session('?uid'))
             $this->error(L('PLEASE_LOGIN'), U('Public/login'));

@@ -4,6 +4,9 @@ use Think\Controller;
 class PublicController extends Controller {
 
 	public function login(){
+		if(session('?uid')){
+			$this->redirect('Common/index');
+		}
 		$this->display(MODULE_NAME.'/login');
 	}
 

@@ -2,6 +2,13 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+
+    public function _initialize(){
+        // 验证安装
+        if(true != get_config('installed')){
+            $this->redirect('Install/Install/index');
+        }
+    }
 	
     public function index(){
         $this->display(MODULE_NAME.'/index');

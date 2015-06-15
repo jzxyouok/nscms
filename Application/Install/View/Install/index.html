@@ -21,13 +21,17 @@
 </head>
 <body>
 	<div>
-		<h2>执行安装前请先确保做了以下步骤</h2>
-		<ul>
-			<li>建立数据库</li>
-			<li>导入sql文件</li>
-			<li>修改数据库配置文件</li>
-		</ul>
-		<a href="{:U('install')}" class="pure-button pure-button-primary">执行安装</a>
+		<if condition="get_config('installed') eq 1">
+			<h2>已安装</h2>
+		<else />
+			<h2>执行安装前请先确保做了以下步骤</h2>
+			<ul>
+				<li>建立数据库</li>
+				<li>导入sql文件</li>
+				<li>修改数据库配置文件</li>
+			</ul>
+			<a href="{:U('install')}" class="pure-button pure-button-primary">执行安装</a>
+		</if>
 	</div>
 </body>
 </html>
