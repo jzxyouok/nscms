@@ -64,8 +64,7 @@ class ArticleController extends CommonController {
 			);
 			$affecteDataRows = M('article_data')->save($articleData);
 
-			$articleModel->create();
-			$affectedRows = $articleModel->save();
+			$affectedRows = $articleModel->save($post);
 
 			if(true == $affecteDataRows || true == $affectedRows){
 				$affectedRows = $articleModel->where(array('id'=>$post['id']))->setField('updatetime', time());

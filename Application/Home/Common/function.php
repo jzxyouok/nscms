@@ -70,3 +70,29 @@ function get_custom_link_url($linkid){
 function get_sub_nav($pid = 0){
 	return M('category')->where(array('pid'=>$pid,'isnav'=>1))->order('sort desc')->select();
 }
+
+function get_next_article_id($id){
+	$idArray = M('article')->getField('id', true);
+	for ($i=0; $i < count($idArray); $i++) { 
+		if($idArray[$i] == $id){
+			$index = $i - 1;
+			if($index < 0){
+				return -1;
+			}
+			return $idArray[$index];
+		}
+	}
+}
+
+function get_prev_article_id($id){
+	$idArray = M('article')->getField('id', true);
+	for ($i=0; $i < count($idArray); $i++) { 
+		if($idArray[$i] == $id){
+			$index = $i + 1;
+			if($index > count($idArray) - 1){
+				return -1;
+			}
+			return $idArray[$index];
+		}
+	}
+}

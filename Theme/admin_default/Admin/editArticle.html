@@ -13,8 +13,6 @@
                     <a href="{:U('listArticle',array('catid'=>$articleItem['pid']))}">[返回文章列表]</a>
                 </legend>
 
-                <input type="hidden" name="pid" value="{$articleItem.pid}">
-
                 <label for="admin-list-image">缩略图</label>
                 <img class="admin-list-image" src="{$bannerItem.uploadfileid|get_uploadfile_path}" alt="">
                 <label for="uploadfileid">重新上传</label>
@@ -41,7 +39,7 @@
 
                 <textarea name="content" id="kindeditor" cols="30" rows="10">{$articleDataItem.content}</textarea>
                 
-                <input name="id" type="hidden" value="{$categoryItem.id}">
+                <input name="id" type="hidden" value="{$articleItem.id}">
                 <button type="submit" class="pure-button pure-button-primary">提交</button>
             </fieldset>
         </form>

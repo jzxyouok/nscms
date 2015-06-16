@@ -32,6 +32,9 @@ class IndexController extends Controller {
 
     public function showArticle(){
         $id = I('get.id');
+        if($id == -1){
+            $this->error(L('NO_ARTICLE'));
+        }
     	$this->articleItem = M('article')->find($id);
     	$this->articleDataItem = M('article_data')->find($id);
     	$this->display(MODULE_NAME.'/show');
