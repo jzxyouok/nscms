@@ -25,6 +25,8 @@ class PublicController extends Controller {
 				if(true == $accountItem){
 					if($accountItem['password'] == md5($post['password'])){
 						session('uid', $accountItem['uid']);
+						session('latest_active_time', time());
+						session('uniqid', $accountItem['uniqid']);
 						$this->success(L('LOGIN_SUCCESS'), U('Common/index'));
 					}else{
 						$this->error(L('ACCOUNT_ERROR'), U('login'));

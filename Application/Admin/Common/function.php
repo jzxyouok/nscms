@@ -22,3 +22,7 @@ function has_article($catid){
 	}
 	return false;
 }
+
+function get_uniqid($uid){
+	return M('admin')->where(array('uid'=>$uid))->getField('uniqid');
+}

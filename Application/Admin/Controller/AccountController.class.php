@@ -21,6 +21,7 @@ class AccountController extends CommonController {
 			$adminModel = M('admin');
 			$adminModel->create();
 			$adminModel->password = md5($post['password']);
+			$adminModel->uniqid = uniqid();
 			$insertId = $adminModel->add();
 			if(true == $insertId){
 				$this->success(L('_OPERATION_SUCCESS_'));

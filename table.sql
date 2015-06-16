@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-06-15 14:51:13
+-- Generation Time: 2015-06-16 11:19:19
 -- 服务器版本： 5.5.43-0+deb8u1
 -- PHP Version: 5.6.7-1
 
@@ -30,8 +30,9 @@ CREATE TABLE IF NOT EXISTS `nscms_admin` (
 `uid` int(10) unsigned NOT NULL COMMENT '用户ID',
   `gid` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '用户组ID，0管理组，1用户组',
   `account` varchar(255) NOT NULL COMMENT '管理员账户',
-  `password` varchar(255) NOT NULL COMMENT '管理员密码'
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+  `password` varchar(255) NOT NULL COMMENT '管理员密码',
+  `uniqid` varchar(255) NOT NULL COMMENT '用户唯一ID'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- --------------------------------------------------------
 
@@ -48,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `nscms_article` (
   `istop` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '置顶，0否，1是',
   `sort` int(10) unsigned NOT NULL COMMENT '排序',
   `uploadfileid` int(10) unsigned DEFAULT NULL COMMENT '缩略图附件ID'
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='文章产品内容表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章产品内容表';
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `nscms_banner` (
   `uploadfileid` int(10) unsigned DEFAULT NULL COMMENT 'banner图附件ID',
   `href` varchar(255) DEFAULT NULL COMMENT 'banner图链接',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='首页banner图表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='首页banner图表';
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `nscms_category` (
   `isnav` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '在导航显示，0否，1是',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `tpl` varchar(255) DEFAULT NULL COMMENT '定制模板'
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='导航栏目表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航栏目表';
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `nscms_message` (
   `content` text NOT NULL COMMENT '留言内容',
   `createtime` int(10) unsigned NOT NULL COMMENT '留言时间',
   `isread` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0未读，1已读'
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='留言表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='留言表';
 
 -- --------------------------------------------------------
 
@@ -149,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `nscms_piece` (
   `title` varchar(255) NOT NULL COMMENT '标题',
   `content` text NOT NULL COMMENT '内容',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='碎片调用表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='碎片调用表';
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `nscms_uploads` (
   `sha1` varchar(40) DEFAULT NULL COMMENT '上传文件的sha1哈希验证字符串 仅当hash设置开启后有效',
   `savename` varchar(255) NOT NULL COMMENT '上传文件的保存名称',
   `savepath` varchar(255) NOT NULL COMMENT '上传文件的保存路径'
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='上传附件表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传附件表';
 
 --
 -- Indexes for dumped tables
@@ -247,37 +248,37 @@ ALTER TABLE `nscms_uploads`
 -- AUTO_INCREMENT for table `nscms_admin`
 --
 ALTER TABLE `nscms_admin`
-MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=7;
+MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `nscms_article`
 --
 ALTER TABLE `nscms_article`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nscms_banner`
 --
 ALTER TABLE `nscms_banner`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nscms_category`
 --
 ALTER TABLE `nscms_category`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nscms_message`
 --
 ALTER TABLE `nscms_message`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nscms_piece`
 --
 ALTER TABLE `nscms_piece`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nscms_uploads`
 --
 ALTER TABLE `nscms_uploads`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

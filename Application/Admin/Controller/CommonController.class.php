@@ -12,6 +12,24 @@ class CommonController extends Controller {
         if(false == session('?uid')){
             $this->error(L('PLEASE_LOGIN'), U('Public/login'));
         }
+        // 判断登陆超时
+        $currentTime = time();
+        $latestActiveTime = session('latest_active_time');
+        $timeOut = $currentTime - $latestActiveTime;
+        if($timeOut > 60 * 30){
+            session(null);
+            $this->error(L('LOGIN_TIMEOUT'), U('Public/login'));
+        }else{
+            session('latest_active_time', time());
+        }
+        // 判断用户身份
+        $sessionUid = session('uid');
+        $sessionUniqid = session('uniqid');
+        $currentUniqid = get_uniqid($sessionUid);
+        if($sessionUniqid != $currentUniqid){
+            session(null);
+            $this->redirect('Public/login');
+        }
 	}
 
     public function index(){
@@ -19,7 +37,7 @@ class CommonController extends Controller {
     }
 
     public function signOut(){
-        session('uid', null);
+        session(null);
         $this->success(L('_OPERATION_SUCCESS_'), U('Public/login'));
     }
 

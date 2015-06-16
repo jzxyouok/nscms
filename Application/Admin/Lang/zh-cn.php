@@ -33,4 +33,6 @@ return array(
      'NOTHING_CHANGED' => '啥都没改你提交个毛线？',
 
      'HAS_ARTICLE_ERROR' => '栏目下有文章的先删除文章！',
+
+     'LOGIN_TIMEOUT' => '登陆超时，重新登陆！',
 );

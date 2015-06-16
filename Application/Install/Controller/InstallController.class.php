@@ -11,9 +11,10 @@ class InstallController extends Controller {
 		}
 		// 添加超级管理员
 		$accountData = array(
-			'account' => 'nasen',
+			'account' => 'admin',
 			'gid' => 0,
-			'password' => md5('123456'),
+			'password' => md5('admin'),
+			'uniqid' => uniqid(),
 		);
 		$insertId = M('admin')->add($accountData);
 		// 添加SEO配置
