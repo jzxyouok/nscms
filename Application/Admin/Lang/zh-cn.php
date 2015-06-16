@@ -31,4 +31,6 @@ return array(
      'PASSWORD_NOT_CHANGE' => '原密码和新密码一样，少年你逗我？',
 
      'NOTHING_CHANGED' => '啥都没改你提交个毛线？',
+
+     'HAS_ARTICLE_ERROR' => '栏目下有文章的先删除文章！',
 );

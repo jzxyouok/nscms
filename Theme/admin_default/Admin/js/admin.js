@@ -23,7 +23,9 @@ $(document).ready(function() {
 			"ids": ids
 		}, function(ajaxReturn) {
 			//ajaxReturn.url = window.location.href;
-			standard_post($("#showMsg").attr("href"), ajaxReturn);// 操作成功/失败提示
+			//standard_post($("#showMsg").attr("href"), ajaxReturn);// 操作成功/失败提示
+			alert(ajaxReturn.info);
+			location=location;
 		});
 		return false;
 	});
@@ -69,7 +71,9 @@ $(document).ready(function() {
 			"ids": ids
 		}, function(ajaxReturn) {
 			//ajaxReturn.url = window.location.href;
-			standard_post($("#showMsg").attr("href"), ajaxReturn);// 操作成功/失败提示
+			//standard_post($("#showMsg").attr("href"), ajaxReturn);// 操作成功/失败提示
+			alert(ajaxReturn.info);
+			location=location;
 		})
 		return false;
 	});

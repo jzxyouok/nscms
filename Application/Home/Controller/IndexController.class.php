@@ -23,10 +23,11 @@ class IndexController extends Controller {
     public function listArticle(){
         $catid = I('get.catid');
     	$tpl = M('category')->where(array('id'=>$catid))->getField('tpl');
-    	if($tpl)
+    	if($tpl){
     		$this->display(MODULE_NAME.'/list_'.$tpl);
-    	else
+        }else{
     		$this->display(MODULE_NAME.'/list');
+        }
     }
 
     public function showArticle(){
@@ -46,10 +47,11 @@ class IndexController extends Controller {
 	    	$messageModel->create();
 	    	$messageModel->createtime = time();
 	    	$insertId = $messageModel->add();
-	    	if($insertId)
+	    	if($insertId){
 	    		$this->success(L('_OPERATION_SUCCESS_'));
-	    	else
+            }else{
 	    		$this->error(L('_OPERATION_FAIL_'));
+            }
     	}
     }
 

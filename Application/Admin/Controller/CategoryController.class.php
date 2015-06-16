@@ -53,32 +53,34 @@ class CategoryController extends CommonController {
             if(true == has_sub_category($id)){
                 $this->error(L('HAS_SUB_CATEGORY_ERROR'));
             }
+            if(true == has_article($id)){
+                $this->error(L('HAS_ARTICLE_ERROR'));
+            }
         }
         //循环删除
         $categoryModel = M('category');
         $success = 0;
         foreach ($ids as $id) {
             $categoryType = get_category_type_no($id); // 获取栏目类型
-            $affectedRows = $categoryModel->delete($id); // 从数据库删除栏目
+            //判断栏目类型，自定义链接和单页需在各自的内容表里删除相同ID的记录
+            switch ($categoryType) {
+                case 0: // 自定义链接 custom_link
+                    $affectedDataRows = A('CustomLink')->customLinkDelete($id);
+                    // $result = M('custom_link')->delete($id);
+                    break;
 
-            if(true == $affectedRows){
-                //判断栏目类型，自定义链接和单页需在各自的内容表里删除相同ID的记录
-                switch ($categoryType) {
-                    case 0: // 自定义链接 custom_link
-                        $result = A('CustomLink')->customLinkDelete($id);
-                        // $result = M('custom_link')->delete($id);
-                        break;
-
-                    case 1: // 单页 page
-                        $result = A('Page')->pageDelete($id);
-                        // $result = M('page')->delete($id);
-                        break;
-                    
-                    case 2: // 文章 article type = 2
-                        $result = true;
-                        break;
-                }
-                if(true == $result){
+                case 1: // 单页 page
+                    $affectedDataRows = A('Page')->pageDelete($id);
+                    // $result = M('page')->delete($id);
+                    break;
+                
+                case 2: // 文章 article type = 2
+                    $affectedDataRows = true;
+                    break;
+            }
+            if(true == $affectedDataRows){
+                $affectedRows = $categoryModel->delete($id); // 从数据库删除栏目
+                if(true == $affectedRows){
                     $success++;
                 }
             }

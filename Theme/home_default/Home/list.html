@@ -12,9 +12,10 @@
 			<ul class="contentNews">
 				<!-- 文章列表 -->
 				<php>
-					$p = empty(I('get.p')) ? 1 : I('get.p');
-					$articleList = get_article_list(I('get.catid'), 7, $p);
-					$show = get_list_page_show(I('get.catid'), 7);
+					$get = I('get.');
+					$p = (false == $get['p']) ? 1 : $get['p'];
+					$articleList = get_article_list($get['catid'], 7, $get['p']);
+					$show = get_list_page_show($get['catid'], 7);
 				</php>
 				<volist name="articleList" id="al">
 					<li><a href="{:U('showArticle',array('id'=>$al['id']))}"><span>{$al.updatetime|date="Y-m-d", ###}</span>{$al.title}</a></li>
