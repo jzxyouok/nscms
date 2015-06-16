@@ -9,7 +9,7 @@
 			<p>您现在的位置：<a href="{:U('index')}">网站首页</a> > <a href="{:U('listArticle',array('catid'=>$articleItem['pid']))}">{$articleItem.pid|get_catname}</a> > {$articleItem.title}</p>
 		</div>
 		<div class="content contentPage">{$articleDataItem.content|htmlspecialchars_decode}</div>
-		<div>
+		<div class="additional-div">
 			<a href="{:U('showArticle',array('id'=>get_prev_article_id($articleItem['id'])))}" class="pure-button">上一篇</a>
 			<a href="{:U('showArticle',array('id'=>get_next_article_id($articleItem['id'])))}" class="pure-button">下一篇</a>
 		</div>
