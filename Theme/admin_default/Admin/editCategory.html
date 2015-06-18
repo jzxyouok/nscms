@@ -14,6 +14,7 @@
                     <label for="catname">栏目名称</label>
                     <input name="catname" type="text" placeholder="栏目名称" value="{$categoryItem.catname}">
 
+                    <!--
                     <label for="type">栏目类型</label>
                     <label for="type0" class="pure-radio">
                         <input id="type0" name="type" type="radio" value="0" <eq name="categoryItem.type" value="0">checked</eq>> 自定义
@@ -24,6 +25,9 @@
                     <label for="type2" class="pure-radio">
                         <input id="type2" name="type" type="radio" value="2" <eq name="categoryItem.type" value="2">checked</eq>> 文章/图片
                     </label>
+                    -->
+                    <label for="type">栏目类型</label>
+                    <input type="text" name="type" value="<switch name='categoryItem.type'><case value='0'>自定义</case><case value='1'>单页</case><case value='2'>文章/图片</case></switch>" readonly/>
 
                     <label for="pid">父级栏目</label>
                     <select name="pid" id="pid">

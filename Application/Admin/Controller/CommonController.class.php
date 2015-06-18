@@ -42,7 +42,7 @@ class CommonController extends Controller {
     }
 
 	//ajax执行后的信息提示
-    public function showMsg(){
+    public function showMessage(){
         $ajaxReturn = I('post.');
         if(1 == $ajaxReturn['status']){
             $this->success($ajaxReturn['info'], $ajaxReturn['url']);

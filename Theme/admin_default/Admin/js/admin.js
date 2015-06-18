@@ -22,10 +22,9 @@ $(document).ready(function() {
 		$.post($(this).attr("href"), {// ajax post提交ID数组到删除方法
 			"ids": ids
 		}, function(ajaxReturn) {
-			//ajaxReturn.url = window.location.href;
-			//standard_post($("#showMsg").attr("href"), ajaxReturn);// 操作成功/失败提示
-			alert(ajaxReturn.info);
-			location=location;
+            var showMessageUrl = $("#showMessageUrl").prop("href");
+			standard_post(showMessageUrl, ajaxReturn);// 操作成功/失败提示
+			//location=location;
 		});
 		return false;
 	});
@@ -70,10 +69,9 @@ $(document).ready(function() {
 			"sorts": sorts,
 			"ids": ids
 		}, function(ajaxReturn) {
-			//ajaxReturn.url = window.location.href;
-			//standard_post($("#showMsg").attr("href"), ajaxReturn);// 操作成功/失败提示
-			alert(ajaxReturn.info);
-			location=location;
+            var showMessageUrl = $("#showMessageUrl").prop("href");
+			standard_post(showMessageUrl, ajaxReturn);// 操作成功/失败提示
+			//location=location;
 		})
 		return false;
 	});

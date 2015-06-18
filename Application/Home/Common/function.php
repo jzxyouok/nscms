@@ -67,8 +67,8 @@ function get_custom_link_url($linkid){
  * @param int $pid 父级栏目ID
  * @return array 子栏目数组
  */
-function get_sub_nav($pid = 0){
-	return M('category')->where(array('pid'=>$pid,'isnav'=>1))->order('sort desc')->select();
+function get_sub_nav($pid = 0, $limit = ''){
+	return M('category')->where(array('pid'=>$pid,'isnav'=>1))->limit($limit)->order('sort desc')->select();
 }
 
 function get_next_article_id($id){
