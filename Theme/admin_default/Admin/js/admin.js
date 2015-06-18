@@ -105,23 +105,4 @@ $(document).ready(function() {
 	$("#page .num").addClass("pure-button");
 	$("#page .next").addClass("pure-button");
 	$("#page .current").addClass("pure-button pure-button-primary");
-
-	//测试按钮
-	$("#test").click(function() {
-		var sorts = [];
-		var ids = [];
-		$(".cms-input-order").each(function(i) {
-			sorts[i] = $(this).val();
-		});
-		$(".ids").each(function(i) {
-			ids[i] = $(this).val();
-		});
-		var arr = new Array();
-		for (var i = 0; i < ids.length; i++) {
-			var id = ids[i];
-			arr[id] = sorts[i];
-		};
-		standard_post($(this).attr("href"), arr);
-		return false;
-	});
 });

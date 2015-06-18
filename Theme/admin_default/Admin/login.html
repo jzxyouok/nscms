@@ -12,9 +12,9 @@
 		<h2>后台登陆</h2>
 		<form class="pure-form" method="post" action="{:U('signIn')}">
 		    <fieldset class="pure-group">
-		        <input id="account" name="account" type="text" class="pure-input-1" placeholder="用户名">
-		        <input name="password" type="password" class="pure-input-1" placeholder="密码">
-		        <input name="verify" type="text" class="pure-input-1" placeholder="验证码">
+		        <input id="account" name="account" type="text" class="pure-input-1" placeholder="用户名" required>
+		        <input name="password" type="password" class="pure-input-1" placeholder="密码" required>
+		        <input name="verify" type="text" class="pure-input-1" placeholder="验证码" required>
 		        <a id="verify-image" href="#">
 		        	<img class="pure-u-1" src="{:U('verifyImage')}" alt="">
 		        </a>

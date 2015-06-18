@@ -11,7 +11,7 @@
                     <legend>新增栏目</legend>
 
                     <label for="catname">栏目名称</label>
-                    <input name="catname" type="text" placeholder="栏目名称">
+                    <input name="catname" type="text" placeholder="栏目名称" required>
 
                     <label for="type">栏目类型</label>
                     <label for="type0" class="pure-radio">
@@ -54,8 +54,11 @@
                         <input name="isnav" id="isnav2" type="radio" value="1"> 是
                     </label>
 
-                    <label for="catname">定制模板<i>（留空为默认）</i></label>
-                    <input name="tpl" type="text" placeholder="定制模板（留空为默认）">
+                    <label for="catname">模板选择</label>
+                    <select name="tpl" id="">
+                        <option value="">文章模板</option>
+                        <option value="picture">图片模板</option>
+                    </select>
 
                     <button type="submit" class="pure-button pure-button-primary">提交</button>
                 </fieldset>
