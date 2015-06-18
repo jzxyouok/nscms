@@ -41,13 +41,13 @@ class CommonController extends Controller {
         $this->success(L('_OPERATION_SUCCESS_'), U('Public/login'));
     }
 
-	//ajax执行后的信息提示
-    public function showMessage(){
-        $ajaxReturn = I('post.');
-        if(1 == $ajaxReturn['status']){
-            $this->success($ajaxReturn['info'], $ajaxReturn['url']);
+	//排序、删除等ajax操作执行后的信息提示
+    public function showSuccess(){
+        $status = I('get.status');
+        if(1 == $status){
+            $this->success(L('_OPERATION_SUCCESS_'));
         }else{
-            $this->error($ajaxReturn['info'], $ajaxReturn['url']);
+            $this->error(L('_OPERATION_FAIL_'));
         }
     }
     

@@ -22,8 +22,8 @@ $(document).ready(function() {
 		$.post($(this).attr("href"), {// ajax post提交ID数组到删除方法
 			"ids": ids
 		}, function(ajaxReturn) {
-            var showMessageUrl = $("#showMessageUrl").prop("href");
-			standard_post(showMessageUrl, ajaxReturn);// 操作成功/失败提示
+            var showSuccessUrl = $("#showSuccessUrl").prop("href");
+            location = showSuccessUrl + "/status/" + ajaxReturn.status;
 			//location=location;
 		});
 		return false;
@@ -69,8 +69,8 @@ $(document).ready(function() {
 			"sorts": sorts,
 			"ids": ids
 		}, function(ajaxReturn) {
-            var showMessageUrl = $("#showMessageUrl").prop("href");
-			standard_post(showMessageUrl, ajaxReturn);// 操作成功/失败提示
+            var showSuccessUrl = $("#showSuccessUrl").prop("href");
+            location = showSuccessUrl + "/status/" + ajaxReturn.status;
 			//location=location;
 		})
 		return false;
