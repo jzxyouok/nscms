@@ -4,7 +4,7 @@ use Think\Controller;
 class ConfigController extends CommonController {
 
 	public function seoSet(){
-		$this->display(MODULE_NAME.'/'.ACTION_NAME);
+		$this->display(MODULE_NAME.'/seoSet');
 	}
 
 	public function setSEO(){

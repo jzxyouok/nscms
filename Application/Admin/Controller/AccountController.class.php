@@ -9,7 +9,7 @@ class AccountController extends CommonController {
 	}
 
 	public function addAccount(){
-		$this->display(MODULE_NAME.'/'.ACTION_NAME);
+		$this->display(MODULE_NAME.'/addAccount');
 	}
 
 	public function accountAdd(){
@@ -34,7 +34,7 @@ class AccountController extends CommonController {
 	public function editAccount(){
 		$id = I('get.id');
 		$this->accountItem = M('admin')->find($id);
-		$this->display(MODULE_NAME.'/'.ACTION_NAME);
+		$this->display(MODULE_NAME.'/editAccount');
 	}
 
 	public function accountEdit(){
@@ -67,7 +67,7 @@ class AccountController extends CommonController {
 		if($uid == $currentUid){
 			$this->error(L('CAN_NOT_RESET_SELF'));
 		}
-		$this->display(MODULE_NAME.'/'.ACTION_NAME);
+		$this->display(MODULE_NAME.'/resetPassword');
 	}
 
 	public function passwordReset(){
@@ -86,7 +86,7 @@ class AccountController extends CommonController {
 	}
 
 	public function changePassword(){
-		$this->display(MODULE_NAME.'/'.ACTION_NAME);
+		$this->display(MODULE_NAME.'/changePassword');
 	}
 
 	public function passwordChange(){
