@@ -126,4 +126,14 @@ class CommonController extends Controller {
     public function test(){
         // echo get_account(5);
     }
+
+    public function clearCache(){
+        $runtimePath = realpath(RUNTIME_PATH . 'Cache');
+        $status = emptyDir($runtimePath);
+        if(true == $status){
+            $this->success(L('_OPERATION_SUCCESS_'));
+        }else{
+            $this->error(L('_OPERATION_FAIL_'));
+        }
+    }
 }

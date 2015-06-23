@@ -14,6 +14,10 @@
                 <a href="javascript:void(0)" class="pure-menu-link">你好，{$Think.session.uid|get_account}</a>
             </li>
 
+            <li class="pure-menu-item menu-item-divided">
+                <a href="{:U('clearCache')}" class="pure-menu-link">清空缓存</a>
+            </li>
+
             <eq name="Think.session.uid|get_gid" value="0">
                 <li class="pure-menu-item menu-item-divided <eq name='Think.const.CONTROLLER_NAME' value='Account'><neq name='Think.const.ACTION_NAME' value='changePassword'>pure-menu-selected</neq></eq>">
                     <a href="{:U('Account/listAccount')}" class="pure-menu-link">后台用户</a>
