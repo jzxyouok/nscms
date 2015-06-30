@@ -29,6 +29,7 @@ class ArticleController extends CommonController {
 			$articleModel = M('article');
 			$articleModel->create();
 			$articleModel->updatetime = time();
+			$articleModel->sort = 0;
 			$insertId = $articleModel->add();
 			if(true == $insertId){
 				$content = I('post.content');
