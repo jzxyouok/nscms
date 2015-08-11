@@ -1,6 +1,6 @@
-# 一个基于ThinkPHP的简易企业展示型CMS
+# 简易CMS,基于ThinkPHP
+
 ## 2015-06-25更新
-玩具程序，不靠谱，要靠谱的请转到 [http://github.com/dusu/ot10](http://github.com/dusu/ot10)
 
 #### 相关依赖：
 * 框架：ThinkPHP v3.2.3
@@ -20,4 +20,3 @@
 3. 修改`Application/Common/Conf/config.php`中数据库相关配置
 4. 从浏览器访问程序，会自动跳转到安装界面，安装后自动跳转到登陆界面
 5. 默认用户名：`admin`，密码：`admin`
-6. 剩下的自己进去玩儿吧
