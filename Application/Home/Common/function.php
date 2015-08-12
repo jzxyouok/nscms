@@ -96,3 +96,10 @@ function get_prev_article_id($id){
 		}
 	}
 }
+
+/**
+ * 获取友链列表
+ */
+function get_friend_link_list(){
+	return M('friend_link')->order('sort desc,id')->select();
+}

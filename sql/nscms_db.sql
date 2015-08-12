@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-06-16 11:19:19
--- 服务器版本： 5.5.43-0+deb8u1
--- PHP Version: 5.6.7-1
+-- Generation Time: 2015-08-12 16:38:54
+-- 服务器版本： 5.5.44-0+deb8u1
+-- PHP Version: 5.6.9-0+deb8u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `nscms_admin` (
   `account` varchar(255) NOT NULL COMMENT '管理员账户',
   `password` varchar(255) NOT NULL COMMENT '管理员密码',
   `uniqid` varchar(255) NOT NULL COMMENT '用户唯一ID'
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- --------------------------------------------------------
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `nscms_article` (
 CREATE TABLE IF NOT EXISTS `nscms_article_data` (
   `articleid` int(10) unsigned NOT NULL COMMENT '文章ID',
   `content` text NOT NULL COMMENT '文章内容'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -112,6 +112,19 @@ CREATE TABLE IF NOT EXISTS `nscms_custom_link` (
   `linkid` int(10) unsigned NOT NULL COMMENT '导航栏目自定义链接ID',
   `href` varchar(255) DEFAULT NULL COMMENT '自定义链接内容'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航自定义链接表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `nscms_friend_link`
+--
+
+CREATE TABLE IF NOT EXISTS `nscms_friend_link` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL COMMENT '友链名称',
+  `href` varchar(255) NOT NULL COMMENT '友链URL',
+  `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='友情链接表';
 
 -- --------------------------------------------------------
 
@@ -217,6 +230,12 @@ ALTER TABLE `nscms_custom_link`
  ADD PRIMARY KEY (`linkid`);
 
 --
+-- Indexes for table `nscms_friend_link`
+--
+ALTER TABLE `nscms_friend_link`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `nscms_message`
 --
 ALTER TABLE `nscms_message`
@@ -248,7 +267,7 @@ ALTER TABLE `nscms_uploads`
 -- AUTO_INCREMENT for table `nscms_admin`
 --
 ALTER TABLE `nscms_admin`
-MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=2;
+MODIFY `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `nscms_article`
 --
@@ -264,6 +283,11 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `nscms_category`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `nscms_friend_link`
+--
+ALTER TABLE `nscms_friend_link`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `nscms_message`
 --

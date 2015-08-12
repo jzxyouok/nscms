@@ -1,0 +1,57 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead">友链管理</h2>
+        <a class="pure-button" href="{:U('addFriendLink','','')}">新增</a>
+        <a id="editButton" class="pure-button" href="{:U('editFriendLink','','')}">编辑</a>
+        <a id="deleteButton" class="pure-button" href="{:U('delete',array('table'=>'friend_link'))}">删除</a>
+        <a id="showMsg" class=".hidden" href="{:U('showMsg')}" hidden></a>
+        <h2></h2>
+        
+        <div>
+            <p>前台调用方法</p>
+            <p>&lt?php $list = get_friend_link_list(); ?&gt</p>
+            <p>
+                &ltvolist name="list" id="vo"&gt
+                <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &lta href="<span>{</span>$vo.href}"&gt<span>{</span>$vo.name}&lt/a&gt
+                <br />
+                &lt/volist&gt
+            </p>
+        </div>
+
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <th><input id="checkAllIds" type="checkbox"></th>
+                    <th>名称</th>
+                    <th>URL</th>
+                    <th>
+                        <a id="sortButton" class="pure-button pure-button-primary" href="{:U('sort',array('table'=>'friend_link'))}">排序</a>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <volist name="dataList" id="vo">
+                    <tr>
+                        <td><input class="ids" type="checkbox" value="{$vo.id}"></td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.href}</td>
+                        <td><input class="cms-input-order" type="text" value="{$vo.sort}"></td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <h2></h2>
+        <div id="page">{$show}</div>
+    </div>
+</div>
+
+<include file="Admin/footer" />

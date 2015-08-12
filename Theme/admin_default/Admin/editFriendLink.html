@@ -1,0 +1,27 @@
+<include file="Admin/header" />
+<include file="Admin/left" />
+
+<div id="main">
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <h2 class="content-subhead"></h2>
+        <form class="pure-form pure-form-stacked" method="post" action="{:U('friendLinkEdit')}">
+            <fieldset>
+                <legend>添加友链</legend>
+
+                <label for="name">名称</label>
+                <input name="name" type="text" value="{$item.name}" placeholder="名称" required>
+
+                <label for="href">URL</label>
+                <input name="href" type="text" value="{$item.href}" placeholder="URL" required>
+
+                <input type="hidden" name="id" value="{$item.id}">
+                <button type="submit" class="pure-button pure-button-primary">提交</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<include file="Admin/footer" />

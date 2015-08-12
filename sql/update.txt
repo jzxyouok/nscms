@@ -1,0 +1,11 @@
+update log 2015-08-12
+
+modified:   Application/Home/Common/function.php
+modified:   Theme/admin_default/Admin/left.html
+
+Untracked files:
+
+	Application/Admin/Controller/FriendLinkController.class.php
+	Theme/admin_default/Admin/addFriendLink.html
+	Theme/admin_default/Admin/editFriendLink.html
+	Theme/admin_default/Admin/listFriendLink.html
