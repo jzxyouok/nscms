@@ -34,28 +34,28 @@ class CommonController extends Controller {
         $gid = get_gid($sessionUid);
         if ($gid == 2) {
             $allowList = array(
-                'Common/index',
-                'Account/listAccount',
-                'Account/addAccount',
-                'Account/editAccount',
-                'Config/seoSet',
-                'FriendLink/listFriendLink',
-                'FriendLink/addFriendLink',
-                'FriendLink/editFriendLink',
-                'Category/listCategory',
-                'Category/addCategory',
-                'Category/editCategory',
-                'Banner/listBanner',
-                'Banner/addBanner',
-                'Banner/editBanner',
-                'Piece/listPiece',
-                'Piece/addPiece',
-                'Piece/editPiece',
-                'Message/listMessage',
-                'Account/changePassword',
-                'Common/signOut',
+                'common/index',
+                'account/listaccount',
+                'account/addaccount',
+                'account/editaccount',
+                'config/seoset',
+                'friendlink/listfriendlink',
+                'friendlink/addfriendlink',
+                'friendlink/editfriendlink',
+                'category/listcategory',
+                'category/addcategory',
+                'category/editcategory',
+                'banner/listbanner',
+                'banner/addbanner',
+                'banner/editbanner',
+                'piece/listpiece',
+                'piece/addpiece',
+                'piece/editpiece',
+                'message/listmessage',
+                'account/changepassword',
+                'common/signout',
             );
-            $currentAction = CONTROLLER_NAME . '/' . ACTION_NAME;
+            $currentAction = strtolower(CONTROLLER_NAME . '/' . ACTION_NAME);
             if (!in_array($currentAction, $allowList)) {
                 $this->error('无权限！');
             }
