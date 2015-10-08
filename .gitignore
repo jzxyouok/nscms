@@ -1,4 +1,5 @@
-Application/Runtime
+Application/Runtime/*
+!Application/Runtime/README.md
 Uploads/*
 !Uploads/index.html
 !Uploads/README.md
