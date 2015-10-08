@@ -95,9 +95,9 @@ $(document).ready(function() {
 
 	//操作提示语
 	var Lang = {
-		"NOT_CHECKED_ERROR": "啥都没选呢！点我搞毛！",
+		"NOT_CHECKED_ERROR": "先选择！",
 		"CONFIRM_DELETE": "确定删除？",
-		"TOO_MANY_ERROR": "选多了！只能选一个！"
+		"TOO_MANY_ERROR": "只选一项！"
 	};
 
 	// 加载分页按钮样式
