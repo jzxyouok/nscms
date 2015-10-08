@@ -27,7 +27,13 @@
                     <tr>
                         <td><input class="ids" type="checkbox" value="{$vo.uid}"></td>
                         <td>{$vo.account}</td>
-                        <td>{$vo['gid']?'用户':'管理员'}</td>
+                        <td>
+                            <switch name="vo.gid">
+                                <case value="0">{:L('SUPER_USER')}</case>
+                                <case value="1">{:L('NORMAL_USER')}</case>
+                                <case value="2">{:L('DEMO_USER')}</case>
+                            </switch>
+                        </td>
                     </tr>
                 </volist>
             </tbody>

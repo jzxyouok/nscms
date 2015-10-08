@@ -30,6 +30,36 @@ class CommonController extends Controller {
             session(null);
             $this->redirect('Public/login');
         }
+        // 判断演示账号，限制权限
+        $gid = get_gid($sessionUid);
+        if ($gid == 2) {
+            $allowList = array(
+                'Common/index',
+                'Account/listAccount',
+                'Account/addAccount',
+                'Account/editAccount',
+                'Config/seoSet',
+                'FriendLink/listFriendLink',
+                'FriendLink/addFriendLink',
+                'FriendLink/editFriendLink',
+                'Category/listCategory',
+                'Category/addCategory',
+                'Category/editCategory',
+                'Banner/listBanner',
+                'Banner/addBanner',
+                'Banner/editBanner',
+                'Piece/listPiece',
+                'Piece/addPiece',
+                'Piece/editPiece',
+                'Message/listMessage',
+                'Account/changePassword',
+                'Common/signOut',
+            );
+            $currentAction = CONTROLLER_NAME . '/' . ACTION_NAME;
+            if (!in_array($currentAction, $allowList)) {
+                $this->error('无权限！');
+            }
+        }
 	}
 
     public function index(){

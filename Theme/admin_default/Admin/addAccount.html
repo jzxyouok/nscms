@@ -21,12 +21,17 @@
                 <input name="repassword" type="password" placeholder="确认密码" required>
 
                 <label for="gid">身份（权限）</label>
-                <label for="gid1" class="pure-radio">
-                    <input name="gid" id="gid1" type="radio" value="1" checked> 用户
-                </label>
-                <label for="gid0" class="pure-radio">
-                    <input name="gid" id="gid0" type="radio" value="0"> 管理员
-                </label>
+                <select id="gid" name="gid">
+                    <option value="1" selected>{:L('NORMAL_USER')}</option>
+                    <option value="0">{:L('SUPER_USER')}</option>
+                    <option value="2">{:L('DEMO_USER')}</option>
+                </select>
+                <!-- <label for="gid1" class="pure-radio"> -->
+                <!--     <input name="gid" id="gid1" type="radio" value="1" checked> 用户 -->
+                <!-- </label> -->
+                <!-- <label for="gid0" class="pure-radio"> -->
+                <!--     <input name="gid" id="gid0" type="radio" value="0"> 管理员 -->
+                <!-- </label> -->
 
                 <button type="submit" class="pure-button pure-button-primary">提交</button>
             </fieldset>

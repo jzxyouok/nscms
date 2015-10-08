@@ -1,5 +1,13 @@
 <div class="footer">
-	货运公司成品网站 版权所有：<a href="#">内蒙古纳森科技有限公司</a> 技术支持：<a href="#">纳森科技</a>
+    <?php $list = get_friend_link_list(); ?>
+    <div class="friend-link">
+        <volist name="list" id="vo">
+             <a href="{$vo.href}">{$vo.name}</a>
+        </volist> 
+    </div>
+    <div>
+        货运公司成品网站 版权所有：<a href="#">纳森科技有限公司</a> 技术支持：<a href="#">纳森科技</a>
+    </div>
 </div>
 </body>
 </html>

@@ -43,7 +43,7 @@ body{font-size:12px; font-family:'SimSun'; background:url(../images/1.jpg) repea
 .mainC-rolling ul li span{display:block; width:160px; height:36px; color:#4b4b4b; text-align:center; line-height:36px; font-size:12px;}
 .mainC-rolling ul li a{display:block;}
 .mainContact{width:264px; line-height:24px; padding-top:13px;}
-.footer{ width:100%; height:80px; background:#1e1e1e; line-height: 80px; text-align:center; color:#bbbbbb;}
+.footer{ width:100%; background:#1e1e1e; line-height: 40px; text-align:center; color:#bbbbbb; padding-top:10px; padding-bottom:10px;}
 .footer a{color:#bbbbbb;}
 
 .Nmain{width:1258px; margin:0 auto; overflow:hidden; background:url(../images/sidebarBg.jpg) repeat-y left top;}
@@ -83,3 +83,7 @@ body{font-size:12px; font-family:'SimSun'; background:url(../images/1.jpg) repea
 .friendLink li img{width:220px; height:50px; display:block;}
 
 .additional-div{padding:44px;}
+
+.friend-link {
+    line-height:40px;
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>纳森CMS后台登陆</title>
+	<title>NSCMS后台登陆</title>
 	<load href="__PUBLIC__/pure_css/pure-min.css" />
 	<load href="{:get_tpl_path()}/css/admin.css" />
 	<load href="__PUBLIC__/jquery-1.11.3.min.js" />
@@ -12,6 +12,7 @@
 		<h2>后台登陆</h2>
 		<form class="pure-form" method="post" action="{:U('signIn')}">
 		    <fieldset class="pure-group">
+                <legend>演示账号：demo / 密码：demo</legend>
 		        <input id="account" name="account" type="text" class="pure-input-1" placeholder="用户名" required>
 		        <input name="password" type="password" class="pure-input-1" placeholder="密码" required>
 		        <input name="verify" type="text" class="pure-input-1" placeholder="验证码" required>
